@@ -1,0 +1,33 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "radiumcoders/ui",
+    "homepage": "https://ui.radiumcoders.com",
+    "items": [
+      {
+        "name": "bento-grid",
+        "type": "registry:ui",
+        "title": "bento grid",
+        "description": "A simple bento grid component.",
+        "files": [
+          {
+            "path": "src/components/ui/bentoGrid.tsx",
+            "type": "registry:ui"
+          }
+        ]
+      },
+      {
+        "name": "stagered-text",
+        "type": "registry:ui",
+        "title": "stagered text",
+        "description": "An animated stagered component.",
+        "files": [
+          {
+            "path": "src/components/ui/animatedText.tsx",
+            "type": "registry:ui"
+          }
+        ]
+      }
+    ],
+    "dependencies":["motion" , "gsap" , "@gsap/react"]
+  }
+  

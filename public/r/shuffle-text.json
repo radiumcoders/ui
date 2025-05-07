@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shuffle-text",
+  "type": "registry:ui",
+  "title": "Shuffle Text",
+  "description": "a great animation of shuffling text until it reaches the desired text",
+  "files": [
+    {
+      "path": "./src/components/ui/ShuffleText.tsx",
+      "content": "\"use client\";\nimport { cn } from \"@/lib/utils\";\nimport { useEffect, useState } from \"react\";\n\ntype ShuffleTextProps = {\n  children: string;\n  duration?: number;\n  speed?: number;\n  className?: string;\n};\n\nfunction ShuffleText({\n  children,\n  duration = 2000,\n  speed = 50,\n  className,\n}: ShuffleTextProps) {\n  const [displayText, setDisplayText] = useState(\"\");\n\n  // Get random uppercase letter\n  const getRandomLetter = () => {\n    return String.fromCharCode(65 + Math.floor(Math.random() * 26));\n  };\n\n  useEffect(() => {\n    // Start with random letters\n    setDisplayText(\n      Array(children.length).fill(\"\").map(getRandomLetter).join(\"\")\n    );\n\n    const startTime = Date.now();\n\n    const intervalId = setInterval(() => {\n      const elapsedTime = Date.now() - startTime;\n      const progress = Math.min(elapsedTime / duration, 1);\n\n      // This is where the actual animation happens\n      setDisplayText(\n        Array.from(children)\n          .map((targetChar, index) => {\n            // Probability increases as animation progresses\n            const shouldSettle = Math.random() < progress * 1.5;\n\n            if (shouldSettle || progress === 1) {\n              return targetChar;\n            }\n            return getRandomLetter();\n          })\n          .join(\"\")\n      );\n\n      // End animation when duration is reached\n      if (elapsedTime >= duration) {\n        clearInterval(intervalId);\n        setDisplayText(children);\n      }\n    }, speed);\n\n    return () => clearInterval(intervalId);\n  }, [children, duration]);\n\n  return <div className={cn(\"text-2xl gap-1\", className)}>{displayText}</div>;\n}\n\nexport default ShuffleText;\n",
+      "type": "registry:ui"
+    }
+  ]
+}
