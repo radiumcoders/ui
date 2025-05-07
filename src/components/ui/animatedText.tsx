@@ -1,7 +1,7 @@
 "use client";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { SplitText } from "gsap/all";
+import { CustomEase, SplitText } from "gsap/all";
 import { cloneElement, ReactElement, Ref, useRef } from "react";
 
 type fromType =
@@ -20,7 +20,7 @@ type AnimatedTextProps = {
   fromP?: fromType;
 };
 
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText , CustomEase);
 
 function AnimatedText({
   children,
@@ -35,22 +35,22 @@ function AnimatedText({
     if (childRef.current) {
       const tl = gsap.timeline();
       splitRef.current = new SplitText(childRef.current, {
-        type: "chars",
-        mask: "chars",
+        type:"chars",
+        // mask: "chars",
         charsClass: "chars++",
       });
       tl.from(splitRef.current.chars, {
         opacity: 0,
         y: 50,
-          //   x:20,
-        scale:0.8,
+        //   x:20,
+        scale: 0.8,
         stagger: {
           each: 0.09,
           from: fromP,
         },
         duration: duration,
         delay: delay,
-        ease: "power2.out",
+        ease: CustomEase.create("custom", "M0,0 C0,0.816 1.018,1.999 1,0.977 "),
       });
     }
     return () => {
