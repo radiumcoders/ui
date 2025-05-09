@@ -17,7 +17,7 @@ type AnimatedTextProps = {
   children: ReactElement<any>;
   delay?: number;
   duration?: number;
-  fromP?: fromType;
+  from?: fromType;
 };
 
 gsap.registerPlugin(SplitText , CustomEase);
@@ -26,7 +26,7 @@ function AnimatedText({
   children,
   delay = 0,
   duration = 1,
-  fromP = "start",
+  from = "random",
 }: AnimatedTextProps) {
   const childRef = useRef<HTMLElement | null>(null);
   const splitRef = useRef<any>(null);
@@ -40,13 +40,14 @@ function AnimatedText({
         charsClass: "chars++",
       });
       tl.from(splitRef.current.chars, {
-        opacity: 0,
+          opacity: 0,
+          filter:"blur(10px)",
         y: 50,
-        //   x:20,
+        x:25,
         scale: 0.8,
         stagger: {
           each: 0.09,
-          from: fromP,
+          from: from,
         },
         duration: duration,
         delay: delay,

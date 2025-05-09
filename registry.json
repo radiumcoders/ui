@@ -1,33 +1,56 @@
 {
-    "$schema": "https://ui.shadcn.com/schema/registry.json",
-    "name": "radiumcoders/ui",
-    "homepage": "https://ui.radiumcoders.com",
-    "items": [
-      {
-        "name": "bento-grid",
-        "type": "registry:ui",
-        "title": "bento grid",
-        "description": "A simple bento grid component.",
-        "files": [
-          {
-            "path": "src/components/ui/bentoGrid.tsx",
-            "type": "registry:ui"
-          }
-        ]
-      },
-      {
-        "name": "stagered-text",
-        "type": "registry:ui",
-        "title": "stagered text",
-        "description": "An animated stagered component.",
-        "files": [
-          {
-            "path": "src/components/ui/animatedText.tsx",
-            "type": "registry:ui"
-          }
-        ]
-      }
-    ],
-    "dependencies":["motion" , "gsap" , "@gsap/react"]
-  }
-  
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "radiumcoders/ui",
+  "homepage": "https://ui.radiumcoders.com",
+  "items": [
+    {
+      "name": "bento-grid",
+      "type": "registry:ui",
+      "title": "bento grid",
+      "description": "A simple bento grid component.",
+      "files": [
+        {
+          "path": "src/components/ui/bentoGrid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stagered-text",
+      "type": "registry:ui",
+      "title": "stagered text",
+      "description": "An animated stagered component.",
+      "files": [
+        {
+          "path": "src/components/ui/animatedText.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sticky-fi",
+      "type": "registry:ui",
+      "title": "sticky-fi",
+      "description": "An animated component to make the desired componet attract to the cursor.",
+      "files": [
+        {
+          "path": "src/components/ui/stickyIco.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "zoup",
+      "type": "registry:ui",
+      "title": "zoooooop",
+      "description": "animated text with a zoooop effect",
+      "files": [
+        {
+          "path": "src/components/ui/zoup.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ],
+  "dependencies": ["motion", "gsap", "@gsap/react"]
+}
