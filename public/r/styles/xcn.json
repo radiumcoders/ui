@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "xcn",
+  "type": "registry:style",
+  "title": "XCN Style",
+  "description": "Base style configuration for XCN components",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [],
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  }
+}

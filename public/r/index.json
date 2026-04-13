@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "radiumcoders",
+  "homepage": "https://ui.radiumcoders.com",
+  "items": [
+    {
+      "name": "animated-cards",
+      "type": "registry:component",
+      "title": "Animated Cards",
+      "description": "Overlapping animated cards with subtle hover zoom and per-card rotation.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "https://ui.radiumcoders.com/r/xcn/animated-cards.json",
+          "type": "registry:page"
+        }
+      ]
+    }
+  ]
+}

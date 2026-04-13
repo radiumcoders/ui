@@ -12,17 +12,16 @@ export type CardItem = {
     y: number
     zIndex: number
   }
+  rotation: number
 }
 
 export function AnimatedCards({ cards }: { cards: CardItem[] }) {
-  const rotations = [-5, 3, -3, 5, -2]
-
   return (
     <div className="mx-auto flex h-screen w-full items-center justify-center">
-      <div className="relative h-[28rem] w-264 max-w-full overflow-visible">
-        {cards.map((card, i) => (
+      <div className="relative h-84 w-264 max-w-full">
+        {cards.map((card) => (
           <motion.div
-            key={card.title + i}
+            key={card.title}
             className="absolute top-0 left-0"
             initial={{
               x: 400,
@@ -38,7 +37,7 @@ export function AnimatedCards({ cards }: { cards: CardItem[] }) {
               zIndex: card.config.zIndex,
               filter: `blur(0px)`,
               scale: 1,
-              rotate: rotations[i % rotations.length],
+              rotate: card.rotation,
             }}
             transition={{
               type: "spring",
@@ -55,7 +54,8 @@ export function AnimatedCards({ cards }: { cards: CardItem[] }) {
               }}
               className={cn(
                 card.className,
-                "flex h-84 w-64 origin-center flex-col justify-between rounded-4xl border border-transparent p-2 text-2xl font-bold ring-1 ring-black/10 ring-inset"
+                "flex h-84 w-64 origin-center flex-col justify-between rounded-4xl border-2 p-2 text-2xl font-bold",
+                "[outline:1px_solid_transparent] backface-hidden transform-3d"
               )}
             >
               {card.skeleton}
