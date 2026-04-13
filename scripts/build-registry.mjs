@@ -37,6 +37,20 @@ const registryIndex = {
         },
       ],
     },
+    {
+      name: "scroll-bars",
+      type: "registry:component",
+      title: "Scroll Bars",
+      description: "Animated scroll bars component.",
+      dependencies: ["motion"],
+      registryDependencies: [],
+      files: [
+        {
+          path: `${BASE_URL}/r/xcn/scroll-bars.json`,
+          type: "registry:page",
+        },
+      ],
+    },
   ],
 }
 
@@ -54,13 +68,13 @@ const animatedCardsItem = {
   registryDependencies: [],
   files: [
     {
-      path: "components/xcn/AnimatedCards.tsx",
+      path: "components/xcn/animated-cards.tsx",
       content: readFileSync(
-        join(process.cwd(), "src/components/xcn/AnimatedCards.tsx"),
+        join(process.cwd(), "src/components/xcn/animated-cards.tsx"),
         "utf8"
       ),
       type: "registry:component",
-      target: "components/xcn/AnimatedCards.tsx",
+      target: "components/xcn/animated-cards.tsx",
     },
   ],
 }
@@ -70,7 +84,34 @@ writeFileSync(
   JSON.stringify(animatedCardsItem, null, 2)
 )
 
-// 3. Style Definition
+// 3. Scroll Bars Component Item
+const scrollBarsItem = {
+  $schema: "https://ui.shadcn.com/schema/registry-item.json",
+  name: "scroll-bars",
+  type: "registry:component",
+  title: "Scroll Bars",
+  description: "Animated scroll bars component.",
+  dependencies: ["motion"],
+  registryDependencies: [],
+  files: [
+    {
+      path: "components/xcn/scroll-bars.tsx",
+      content: readFileSync(
+        join(process.cwd(), "src/components/xcn/scroll-bars.tsx"),
+        "utf8"
+      ),
+      type: "registry:component",
+      target: "components/xcn/scroll-bars.tsx",
+    },
+  ],
+}
+
+writeFileSync(
+  join(xcnDir, "scroll-bars.json"),
+  JSON.stringify(scrollBarsItem, null, 2)
+)
+
+// 4. Style Definition
 const styleItem = {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
   name: "xcn",

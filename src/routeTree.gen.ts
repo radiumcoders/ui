@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ScrollBarsIndexRouteImport } from './routes/scroll-bars/index'
 import { Route as AnimatedCardsIndexRouteImport } from './routes/animated-cards/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScrollBarsIndexRoute = ScrollBarsIndexRouteImport.update({
+  id: '/scroll-bars/',
+  path: '/scroll-bars/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnimatedCardsIndexRoute = AnimatedCardsIndexRouteImport.update({
@@ -26,27 +32,31 @@ const AnimatedCardsIndexRoute = AnimatedCardsIndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/animated-cards/': typeof AnimatedCardsIndexRoute
+  '/scroll-bars/': typeof ScrollBarsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/animated-cards': typeof AnimatedCardsIndexRoute
+  '/scroll-bars': typeof ScrollBarsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/animated-cards/': typeof AnimatedCardsIndexRoute
+  '/scroll-bars/': typeof ScrollBarsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/animated-cards/'
+  fullPaths: '/' | '/animated-cards/' | '/scroll-bars/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/animated-cards'
-  id: '__root__' | '/' | '/animated-cards/'
+  to: '/' | '/animated-cards' | '/scroll-bars'
+  id: '__root__' | '/' | '/animated-cards/' | '/scroll-bars/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnimatedCardsIndexRoute: typeof AnimatedCardsIndexRoute
+  ScrollBarsIndexRoute: typeof ScrollBarsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scroll-bars/': {
+      id: '/scroll-bars/'
+      path: '/scroll-bars'
+      fullPath: '/scroll-bars/'
+      preLoaderRoute: typeof ScrollBarsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/animated-cards/': {
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnimatedCardsIndexRoute: AnimatedCardsIndexRoute,
+  ScrollBarsIndexRoute: ScrollBarsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -19,6 +19,22 @@
           "type": "registry:page"
         }
       ]
+    },
+    {
+      "name": "scroll-bars",
+      "type": "registry:component",
+      "title": "Scroll Bars",
+      "description": "Animated scroll bars component.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "https://ui.radiumcoders.com/r/xcn/scroll-bars.json",
+          "type": "registry:page"
+        }
+      ]
     }
   ]
 }

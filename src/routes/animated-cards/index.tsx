@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { AnimatedCards, type CardItem } from "@/components/xcn/AnimatedCards"
+import { AnimatedCards, type CardItem } from "@/components/xcn/animated-cards"
 
 export const Route = createFileRoute("/animated-cards/")({
   component: RouteComponent,

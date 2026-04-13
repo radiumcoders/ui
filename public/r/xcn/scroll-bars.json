@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-bars",
+  "type": "registry:component",
+  "title": "Scroll Bars",
+  "description": "Animated scroll bars component.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/xcn/scroll-bars.tsx",
+      "content": "import { cn } from \"@/lib/utils\"\nimport { useScroll } from \"motion/react\"\n\nexport function ScrollBars() {\n  const bars = new Array(51).fill(0).map((_, i) => i)\n  const { scrollYProgress } = useScroll()\n  return (\n    <div>\n      <div className=\"flex justify-center items-center gap-1 rounded-3xl border-2 border-border bg-background p-4\">\n        {bars.map((bar, idx) => (\n          <Bar key={`bar-${bar.toString()}`} isLarger={idx % 5 === 0}></Bar>\n        ))}\n      </div>\n    </div>\n  )\n}\n\nfunction Bar({ isLarger }: { isLarger: boolean }) {\n  return <div className={cn(\"w-px bg-primary\", isLarger ? \"h-9\" : \"h-6\")}></div>\n}\n",
+      "type": "registry:component",
+      "target": "components/xcn/scroll-bars.tsx"
+    }
+  ]
+}
