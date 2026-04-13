@@ -17,11 +17,31 @@ export type CardItem = {
 
 export function AnimatedCards({ cards }: { cards: CardItem[] }) {
   return (
-    <div className="mx-auto flex h-screen w-full items-center justify-center">
-      <div className="relative h-84 w-264 max-w-full">
+    <div className="mx-auto flex h-screen w-full items-center justify-center overflow-hidden">
+      {/* Mobile Swipe UI */}
+      <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto px-6 py-10 md:hidden">
+        {cards.map((card) => (
+          <div
+            key={card.title + "-mobile"}
+            className={cn(
+              card.className,
+              "flex h-84 w-64 shrink-0 snap-center flex-col justify-between rounded-4xl border-2 p-2 text-2xl font-bold"
+            )}
+          >
+            {card.skeleton}
+            <div className="items-baseline p-2">
+              <h1 className="text-start">{card.title}</h1>
+              <p className="text-start text-sm">{card.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Animated UI */}
+      <div className="relative hidden h-84 w-264 shrink-0 origin-center md:block md:scale-[0.65] lg:scale-90 xl:scale-100">
         {cards.map((card) => (
           <motion.div
-            key={card.title}
+            key={card.title + "-desktop"}
             className="absolute top-0 left-0"
             initial={{
               x: 400,
