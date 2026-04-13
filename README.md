@@ -2,7 +2,7 @@
 
 > **Hand-crafted, beautiful, and minimal UI components built with Tailwind CSS and Framer Motion.**
 
-RadiumCoders UI is a curated collection of highly polished, animated, and customizable React components. Built on top of the [shadcn/ui](https://ui.shadcn.com/) architecture, these components are designed to be copied directly into your project via the CLI, giving you full ownership and control over the code.
+ui/radiumcoders or xcn is a curated collection of highly polished, animated, and customizable React components. Built on top of the [shadcn/ui](https://ui.shadcn.com/) architecture, these components are designed to be copied directly into your project via the CLI, giving you full ownership and control over the code.
 
 ---
 
@@ -96,4 +96,4 @@ We welcome contributions! If you have a beautiful component you'd like to add or
 ## 📄 License
 
 Created by **RadiumCoders**.
-Released under the [MIT License](LICENSE).
+Released under the [Apache 2.0 License](LICENSE).
