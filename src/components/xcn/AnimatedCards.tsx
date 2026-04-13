@@ -19,7 +19,7 @@ export function AnimatedCards({ cards }: { cards: CardItem[] }) {
   return (
     <div className="mx-auto flex h-screen w-full items-center justify-center overflow-hidden">
       {/* Mobile Swipe UI */}
-      <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto px-6 py-10 md:hidden">
+      <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto px-6 py-10 [-ms-overflow-style:none] [scrollbar-width:none] md:hidden [&::-webkit-scrollbar]:hidden">
         {cards.map((card) => (
           <div
             key={card.title + "-mobile"}
