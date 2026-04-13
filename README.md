@@ -1,4 +1,4 @@
-# ✦ RadiumCoders UI
+# RadiumCoders UI
 
 > **Hand-crafted, beautiful, and minimal UI components built with Tailwind CSS and Framer Motion.**
 
