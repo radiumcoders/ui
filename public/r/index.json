@@ -2,6 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "radiumcoders",
   "homepage": "https://ui.radiumcoders.com",
+  "description": "Hand-crafted, beautiful, and minimal UI components built with Tailwind CSS and Framer Motion.",
   "items": [
     {
       "name": "animated-cards",

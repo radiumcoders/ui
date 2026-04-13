@@ -19,6 +19,8 @@ const registryIndex = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "radiumcoders",
   homepage: BASE_URL,
+  description:
+    "Hand-crafted, beautiful, and minimal UI components built with Tailwind CSS and Framer Motion.",
   items: [
     {
       name: "animated-cards",
