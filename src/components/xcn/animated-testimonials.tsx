@@ -1,48 +1,20 @@
 import { motion } from "motion/react"
 import { useState } from "react"
 
-export function AnimatedTestimonials() {
-  const testimonials = [
-    {
-      content:
-        "Better than a course, it's a reference manual to making great work full of tactical secrets I haven't seen anywhere else.",
-      image: "",
-    },
+export type Testimonial = {
+  content: string
+  image: string
+}
 
-    {
-      content:
-        "Better than a course, it's a reference manual to making great work full of tactical secrets I haven't seen anywhere else.",
-      image: "",
-    },
-
-    {
-      content:
-        "Better than a course, it's a reference manual to making great work full of tactical secrets I haven't seen anywhere else.",
-      image: "",
-    },
-
-    {
-      content:
-        "It's kind of like reading a beautifully designed interactive Medium article.",
-      image: "",
-    },
-
-    {
-      content:
-        "It's not often the best-of-the-best bring you along and show you how it's done.",
-      image: "",
-    },
-
-    {
-      content:
-        "The bar he sets is ridiculous. Every company I know wants to work with him.",
-      image: "",
-    },
-  ]
+export function AnimatedTestimonials({
+  testimonials,
+}: {
+  testimonials: Testimonial[]
+}) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   return (
     <>
-      <div className="text-3xl text-balance">
+      <div className="p-2 text-lg text-balance sm:text-xl md:text-2xl lg:text-3xl">
         {testimonials.map((testimonial, idx) => {
           return (
             <motion.span
@@ -64,7 +36,11 @@ export function AnimatedTestimonials() {
               onMouseLeave={() => setActiveIndex(null)}
             >
               {testimonial.image ? (
-                <img src={testimonial.image} alt={testimonial.content} />
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.content}
+                  className="mr-2 inline-block size-9 rounded-full bg-primary align-middle"
+                />
               ) : (
                 <span className="mr-2 inline-block size-9 rounded-full bg-primary align-middle" />
               )}
