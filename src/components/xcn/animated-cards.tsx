@@ -15,7 +15,13 @@ export type CardItem = {
   rotation: number
 }
 
-export function AnimatedCards({ cards }: { cards: CardItem[] }) {
+export function AnimatedCards({
+  cards,
+  rounded,
+}: {
+  cards: CardItem[]
+  rounded?: boolean
+}) {
   return (
     <div className="mx-auto flex h-screen w-full items-center justify-center overflow-hidden">
       {/* Mobile Swipe UI */}
@@ -25,7 +31,8 @@ export function AnimatedCards({ cards }: { cards: CardItem[] }) {
             key={card.title + "-mobile"}
             className={cn(
               card.className,
-              "flex h-84 w-64 shrink-0 snap-center flex-col justify-between rounded-4xl border-2 p-2 text-2xl font-bold"
+              "flex h-84 w-64 shrink-0 snap-center flex-col justify-between border-2 p-2 text-2xl font-bold",
+              rounded ? "rounded-4xl" : "rounded-none"
             )}
           >
             {card.skeleton}
@@ -74,8 +81,9 @@ export function AnimatedCards({ cards }: { cards: CardItem[] }) {
               }}
               className={cn(
                 card.className,
-                "flex h-84 w-64 origin-center flex-col justify-between rounded-4xl border-2 p-2 text-2xl font-bold",
-                "[outline:1px_solid_transparent] backface-hidden transform-3d"
+                "flex h-84 w-64 origin-center flex-col justify-between border-2 p-2 text-2xl font-bold",
+                "[outline:1px_solid_transparent] backface-hidden transform-3d",
+                rounded ? "rounded-4xl" : "rounded-none"
               )}
             >
               {card.skeleton}
