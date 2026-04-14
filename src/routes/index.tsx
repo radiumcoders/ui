@@ -15,6 +15,10 @@ function RouteComponent() {
         see second component at click -----{" "}
         <Link to="/scroll-bars">/scroll-bars</Link>
       </div>
+      <div>
+        see third component at click -----{" "}
+        <Link to="/animated-testimonials">/animated-testimonials</Link>
+      </div>
     </>
   )
 }
