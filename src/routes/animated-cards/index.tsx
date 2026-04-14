@@ -78,8 +78,13 @@ const Cards: CardItem[] = [
 
 function RouteComponent() {
   return (
-    <div className="flex min-h-svh items-center justify-center bg-white dark:bg-neutral-950">
-      <AnimatedCards cards={Cards} />
+    <div>
+      <div className="flex min-h-svh items-center justify-center bg-white dark:bg-neutral-950">
+        <AnimatedCards cards={Cards} />
+      </div>
+      <div className="flex min-h-svh items-center justify-center bg-white dark:bg-neutral-950">
+        <AnimatedCards cards={Cards} rounded />
+      </div>
     </div>
   )
 }

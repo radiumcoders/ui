@@ -10,7 +10,7 @@ function RouteComponent() {
   const { scrollYProgress } = useScroll()
   return (
     <div className="h-[600vh]">
-      <div className="fixed flex h-full w-full items-center justify-center gap-4">
+      <div className="fixed flex-col sm:flex-row flex h-full w-full items-center justify-center gap-4">
         <ScrollBars scrollYProgress={scrollYProgress}></ScrollBars>
 
         <ScrollBarsVertical scrollYProgress={scrollYProgress}></ScrollBarsVertical>
