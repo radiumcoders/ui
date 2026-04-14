@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-testimonials",
+  "type": "registry:component",
+  "title": "Animated Testimonials",
+  "description": "Animated testimonials with blur effect.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/xcn/animated-testimonials.tsx",
+      "content": "import { motion } from \"motion/react\"\nimport { useState } from \"react\"\n\nexport function AnimatedTestimonials() {\n  const testimonials = [\n    {\n      content:\n        \"Better than a course, it's a reference manual to making great work full of tactical secrets I haven't seen anywhere else.\",\n      image: \"\",\n    },\n\n    {\n      content:\n        \"Better than a course, it's a reference manual to making great work full of tactical secrets I haven't seen anywhere else.\",\n      image: \"\",\n    },\n\n    {\n      content:\n        \"Better than a course, it's a reference manual to making great work full of tactical secrets I haven't seen anywhere else.\",\n      image: \"\",\n    },\n\n    {\n      content:\n        \"It's kind of like reading a beautifully designed interactive Medium article.\",\n      image: \"\",\n    },\n\n    {\n      content:\n        \"It's not often the best-of-the-best bring you along and show you how it's done.\",\n      image: \"\",\n    },\n\n    {\n      content:\n        \"The bar he sets is ridiculous. Every company I know wants to work with him.\",\n      image: \"\",\n    },\n  ]\n  const [activeIndex, setActiveIndex] = useState<number | null>(null)\n  return (\n    <>\n      <div className=\"text-3xl text-balance\">\n        {testimonials.map((testimonial, idx) => {\n          return (\n            <motion.span\n              key={`${testimonial.content}`}\n              className=\"inline\"\n              initial={{ filter: \"blur(10px)\", opacity: 0 }}\n              animate={{\n                filter:\n                  activeIndex === null\n                    ? \"blur(0px)\"\n                    : activeIndex === idx\n                      ? \"blur(0px)\"\n                      : \"blur(4px)\",\n                opacity:\n                  activeIndex === null ? 1 : activeIndex === idx ? 1 : 0.5,\n              }}\n              transition={{ duration: 0.2 }}\n              onMouseEnter={() => setActiveIndex(idx)}\n              onMouseLeave={() => setActiveIndex(null)}\n            >\n              {testimonial.image ? (\n                <img src={testimonial.image} alt={testimonial.content} />\n              ) : (\n                <span className=\"mr-2 inline-block size-9 rounded-full bg-primary align-middle\" />\n              )}\n              {testimonial.content}{\" \"}\n            </motion.span>\n          )\n        })}\n      </div>\n      <div></div>\n    </>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/xcn/animated-testimonials.tsx"
+    }
+  ]
+}

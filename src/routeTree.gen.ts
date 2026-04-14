@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ScrollBarsIndexRouteImport } from './routes/scroll-bars/index'
+import { Route as AnimatedTestimonialsIndexRouteImport } from './routes/animated-testimonials/index'
 import { Route as AnimatedCardsIndexRouteImport } from './routes/animated-cards/index'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,12 @@ const ScrollBarsIndexRoute = ScrollBarsIndexRouteImport.update({
   path: '/scroll-bars/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnimatedTestimonialsIndexRoute =
+  AnimatedTestimonialsIndexRouteImport.update({
+    id: '/animated-testimonials/',
+    path: '/animated-testimonials/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AnimatedCardsIndexRoute = AnimatedCardsIndexRouteImport.update({
   id: '/animated-cards/',
   path: '/animated-cards/',
@@ -32,30 +39,43 @@ const AnimatedCardsIndexRoute = AnimatedCardsIndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/animated-cards/': typeof AnimatedCardsIndexRoute
+  '/animated-testimonials/': typeof AnimatedTestimonialsIndexRoute
   '/scroll-bars/': typeof ScrollBarsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/animated-cards': typeof AnimatedCardsIndexRoute
+  '/animated-testimonials': typeof AnimatedTestimonialsIndexRoute
   '/scroll-bars': typeof ScrollBarsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/animated-cards/': typeof AnimatedCardsIndexRoute
+  '/animated-testimonials/': typeof AnimatedTestimonialsIndexRoute
   '/scroll-bars/': typeof ScrollBarsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/animated-cards/' | '/scroll-bars/'
+  fullPaths:
+    | '/'
+    | '/animated-cards/'
+    | '/animated-testimonials/'
+    | '/scroll-bars/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/animated-cards' | '/scroll-bars'
-  id: '__root__' | '/' | '/animated-cards/' | '/scroll-bars/'
+  to: '/' | '/animated-cards' | '/animated-testimonials' | '/scroll-bars'
+  id:
+    | '__root__'
+    | '/'
+    | '/animated-cards/'
+    | '/animated-testimonials/'
+    | '/scroll-bars/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnimatedCardsIndexRoute: typeof AnimatedCardsIndexRoute
+  AnimatedTestimonialsIndexRoute: typeof AnimatedTestimonialsIndexRoute
   ScrollBarsIndexRoute: typeof ScrollBarsIndexRoute
 }
 
@@ -75,6 +95,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScrollBarsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/animated-testimonials/': {
+      id: '/animated-testimonials/'
+      path: '/animated-testimonials'
+      fullPath: '/animated-testimonials/'
+      preLoaderRoute: typeof AnimatedTestimonialsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/animated-cards/': {
       id: '/animated-cards/'
       path: '/animated-cards'
@@ -88,6 +115,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnimatedCardsIndexRoute: AnimatedCardsIndexRoute,
+  AnimatedTestimonialsIndexRoute: AnimatedTestimonialsIndexRoute,
   ScrollBarsIndexRoute: ScrollBarsIndexRoute,
 }
 export const routeTree = rootRouteImport

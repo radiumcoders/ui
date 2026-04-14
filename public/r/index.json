@@ -35,6 +35,22 @@
           "type": "registry:page"
         }
       ]
+    },
+    {
+      "name": "animated-testimonials",
+      "type": "registry:component",
+      "title": "Animated Testimonials",
+      "description": "Animated testimonials with blur effect.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "https://ui.radiumcoders.com/r/xcn/animated-testimonials.json",
+          "type": "registry:page"
+        }
+      ]
     }
   ]
 }

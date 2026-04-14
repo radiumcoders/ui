@@ -51,6 +51,20 @@ const registryIndex = {
         },
       ],
     },
+    {
+      name: "animated-testimonials",
+      type: "registry:component",
+      title: "Animated Testimonials",
+      description: "Animated testimonials with blur effect.",
+      dependencies: ["motion"],
+      registryDependencies: [],
+      files: [
+        {
+          path: `${BASE_URL}/r/xcn/animated-testimonials.json`,
+          type: "registry:page",
+        },
+      ],
+    },
   ],
 }
 
@@ -111,7 +125,34 @@ writeFileSync(
   JSON.stringify(scrollBarsItem, null, 2)
 )
 
-// 4. Style Definition
+// 4. Animated Testimonials Component Item
+const animatedTestimonialsItem = {
+  $schema: "https://ui.shadcn.com/schema/registry-item.json",
+  name: "animated-testimonials",
+  type: "registry:component",
+  title: "Animated Testimonials",
+  description: "Animated testimonials with blur effect.",
+  dependencies: ["motion"],
+  registryDependencies: [],
+  files: [
+    {
+      path: "components/xcn/animated-testimonials.tsx",
+      content: readFileSync(
+        join(process.cwd(), "src/components/xcn/animated-testimonials.tsx"),
+        "utf8"
+      ),
+      type: "registry:component",
+      target: "components/xcn/animated-testimonials.tsx",
+    },
+  ],
+}
+
+writeFileSync(
+  join(xcnDir, "animated-testimonials.json"),
+  JSON.stringify(animatedTestimonialsItem, null, 2)
+)
+
+// 5. Style Definition
 const styleItem = {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
   name: "xcn",
