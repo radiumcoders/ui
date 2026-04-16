@@ -11,9 +11,18 @@ importers:
       '@base-ui/react':
         specifier: ^1.4.0
         version: 1.4.0(@date-fns/tz@1.4.1)(@types/react@19.2.14)(date-fns@4.1.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      '@fontsource-variable/dm-sans':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource-variable/fira-code':
+        specifier: ^5.2.7
+        version: 5.2.7
       '@fontsource-variable/geist':
         specifier: ^5.2.8
         version: 5.2.8
+      '@fontsource-variable/space-grotesk':
+        specifier: ^5.2.10
+        version: 5.2.10
       '@phosphor-icons/react':
         specifier: ^2.1.10
         version: 2.1.10(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -44,6 +53,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      mesurer:
+        specifier: ^0.0.8
+        version: 0.0.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       motion:
         specifier: ^12.38.0
         version: 12.38.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -581,8 +593,17 @@ packages:
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
 
+  '@fontsource-variable/dm-sans@5.2.8':
+    resolution: {integrity: sha512-AxkvMTvNWgfrmlyjiV05vlHYJa+nRQCf1EfvIrQAPBpFJW0O9VTz7oAFr9S3lvbWdmnFoBk7yFqQL86u64nl2g==}
+
+  '@fontsource-variable/fira-code@5.2.7':
+    resolution: {integrity: sha512-J2bxN7fz5rd8WpQYyau4o19WqTzxoTqaNj9jhsv4p21GSu1Rf34tbqsxqjyDCR+wDMHM3SajyFqtq+5uvRUQ7w==}
+
   '@fontsource-variable/geist@5.2.8':
     resolution: {integrity: sha512-cJ6m9e+8MQ5dCYJsLylfZrgBh6KkG4bOLckB35Tr9J/EqdkEM6QllH5PxqP1dhTvFup+HtMRPuz9xOjxXJggxw==}
+
+  '@fontsource-variable/space-grotesk@5.2.10':
+    resolution: {integrity: sha512-yJQO/o35/hAP3CFnpdFTwQku2yzJOae2HIpBmqkOVoxhhXJaQP3g+b6Jrz7u+eI7A5ZdCIf88uMWpBJdFiGr5w==}
 
   '@hono/node-server@1.19.14':
     resolution: {integrity: sha512-GwtvgtXxnWsucXvbQXkRgqksiH2Qed37H9xHZocE5sA3N8O8O8/8FA3uclQXxXVzc9XBZuEOMK7+r02FmSpHtw==}
@@ -2788,6 +2809,12 @@ packages:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
 
+  mesurer@0.0.8:
+    resolution: {integrity: sha512-Xm0m27B9pzhU7Wr5VPNKz15R0kGjEoJJb5WmtPFpYiADhCIM3tlAd3Zw9ZWY6/F2fjDpAi5Fp6Z4wlbr5Ktb0Q==}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
   micromatch@4.0.8:
     resolution: {integrity: sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==}
     engines: {node: '>=8.6'}
@@ -4337,7 +4364,13 @@ snapshots:
 
   '@floating-ui/utils@0.2.11': {}
 
+  '@fontsource-variable/dm-sans@5.2.8': {}
+
+  '@fontsource-variable/fira-code@5.2.7': {}
+
   '@fontsource-variable/geist@5.2.8': {}
+
+  '@fontsource-variable/space-grotesk@5.2.10': {}
 
   '@hono/node-server@1.19.14(hono@4.12.12)':
     dependencies:
@@ -6473,6 +6506,11 @@ snapshots:
   merge-stream@2.0.0: {}
 
   merge2@1.4.1: {}
+
+  mesurer@0.0.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+    dependencies:
+      react: 19.2.5
+      react-dom: 19.2.5(react@19.2.5)
 
   micromatch@4.0.8:
     dependencies:
