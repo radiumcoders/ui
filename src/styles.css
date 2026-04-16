@@ -5,11 +5,13 @@
 @import "@fontsource-variable/space-grotesk";
 @import "@fontsource-variable/dm-sans";
 @import "@fontsource-variable/fira-code";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/geist-mono";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-space-grotesk);
+    --font-heading: var(--font-inter);
     --font-sans: 'Geist Variable', sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
@@ -49,11 +51,13 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
-    --font-body: var(--font-dm-sans);
-    --font-mono: var(--font-fira-code);
+    --font-body: var(--font-inter);
+    --font-mono: var(--font-geist-mono);
     --font-space-grotesk: Space Grotesk Variable;
     --font-dm-sans: DM Sans Variable;
     --font-fira-code: Fira Code Variable;
+    --font-inter: Inter Variable;
+    --font-geist-mono: Geist Mono Variable;
 }
 
 :root {
@@ -137,15 +141,15 @@
     }
   h1 {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
+    font-size: 2.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
     font-weight: 700;
     }
   h2 {
     font-family: var(--font-heading);
-    font-size: 2rem;
-    line-height: 1.2;
+    font-size: 1.875rem;
+    line-height: 1.25;
     letter-spacing: -0.02em;
     font-weight: 600;
     }
