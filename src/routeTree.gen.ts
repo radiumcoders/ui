@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as ComponentsRouteImport } from './routes/components'
+import { Route as BlocksRouteImport } from './routes/blocks'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ScrollBarsIndexRouteImport } from './routes/scroll-bars/index'
 import { Route as AnimatedTestimonialsIndexRouteImport } from './routes/animated-testimonials/index'
@@ -24,6 +25,11 @@ const TemplatesRoute = TemplatesRouteImport.update({
 const ComponentsRoute = ComponentsRouteImport.update({
   id: '/components',
   path: '/components',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlocksRoute = BlocksRouteImport.update({
+  id: '/blocks',
+  path: '/blocks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -50,6 +56,7 @@ const AnimatedCardsIndexRoute = AnimatedCardsIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blocks': typeof BlocksRoute
   '/components': typeof ComponentsRoute
   '/templates': typeof TemplatesRoute
   '/animated-cards/': typeof AnimatedCardsIndexRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blocks': typeof BlocksRoute
   '/components': typeof ComponentsRoute
   '/templates': typeof TemplatesRoute
   '/animated-cards': typeof AnimatedCardsIndexRoute
@@ -67,6 +75,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blocks': typeof BlocksRoute
   '/components': typeof ComponentsRoute
   '/templates': typeof TemplatesRoute
   '/animated-cards/': typeof AnimatedCardsIndexRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/blocks'
     | '/components'
     | '/templates'
     | '/animated-cards/'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/blocks'
     | '/components'
     | '/templates'
     | '/animated-cards'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/blocks'
     | '/components'
     | '/templates'
     | '/animated-cards/'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlocksRoute: typeof BlocksRoute
   ComponentsRoute: typeof ComponentsRoute
   TemplatesRoute: typeof TemplatesRoute
   AnimatedCardsIndexRoute: typeof AnimatedCardsIndexRoute
@@ -123,6 +136,13 @@ declare module '@tanstack/react-router' {
       path: '/components'
       fullPath: '/components'
       preLoaderRoute: typeof ComponentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blocks': {
+      id: '/blocks'
+      path: '/blocks'
+      fullPath: '/blocks'
+      preLoaderRoute: typeof BlocksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlocksRoute: BlocksRoute,
   ComponentsRoute: ComponentsRoute,
   TemplatesRoute: TemplatesRoute,
   AnimatedCardsIndexRoute: AnimatedCardsIndexRoute,
