@@ -7,6 +7,9 @@ import tailwindcss from "@tailwindcss/vite"
 import { nitro } from "nitro/vite"
 
 const config = defineConfig({
+  ssr: {
+    noExternal: ['@react-three/fiber', 'three'],
+  },
   plugins: [
     devtools(),
     nitro(),

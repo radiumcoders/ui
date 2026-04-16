@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as ComponentsRouteImport } from './routes/components'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ScrollBarsIndexRouteImport } from './routes/scroll-bars/index'
 import { Route as AnimatedTestimonialsIndexRouteImport } from './routes/animated-testimonials/index'
 import { Route as AnimatedCardsIndexRouteImport } from './routes/animated-cards/index'
 
+const TemplatesRoute = TemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComponentsRoute = ComponentsRouteImport.update({
   id: '/components',
   path: '/components',
@@ -45,6 +51,7 @@ const AnimatedCardsIndexRoute = AnimatedCardsIndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/components': typeof ComponentsRoute
+  '/templates': typeof TemplatesRoute
   '/animated-cards/': typeof AnimatedCardsIndexRoute
   '/animated-testimonials/': typeof AnimatedTestimonialsIndexRoute
   '/scroll-bars/': typeof ScrollBarsIndexRoute
@@ -52,6 +59,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/components': typeof ComponentsRoute
+  '/templates': typeof TemplatesRoute
   '/animated-cards': typeof AnimatedCardsIndexRoute
   '/animated-testimonials': typeof AnimatedTestimonialsIndexRoute
   '/scroll-bars': typeof ScrollBarsIndexRoute
@@ -60,6 +68,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/components': typeof ComponentsRoute
+  '/templates': typeof TemplatesRoute
   '/animated-cards/': typeof AnimatedCardsIndexRoute
   '/animated-testimonials/': typeof AnimatedTestimonialsIndexRoute
   '/scroll-bars/': typeof ScrollBarsIndexRoute
@@ -69,6 +78,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/components'
+    | '/templates'
     | '/animated-cards/'
     | '/animated-testimonials/'
     | '/scroll-bars/'
@@ -76,6 +86,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/components'
+    | '/templates'
     | '/animated-cards'
     | '/animated-testimonials'
     | '/scroll-bars'
@@ -83,6 +94,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/components'
+    | '/templates'
     | '/animated-cards/'
     | '/animated-testimonials/'
     | '/scroll-bars/'
@@ -91,6 +103,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComponentsRoute: typeof ComponentsRoute
+  TemplatesRoute: typeof TemplatesRoute
   AnimatedCardsIndexRoute: typeof AnimatedCardsIndexRoute
   AnimatedTestimonialsIndexRoute: typeof AnimatedTestimonialsIndexRoute
   ScrollBarsIndexRoute: typeof ScrollBarsIndexRoute
@@ -98,6 +111,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/templates': {
+      id: '/templates'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof TemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/components': {
       id: '/components'
       path: '/components'
@@ -139,6 +159,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComponentsRoute: ComponentsRoute,
+  TemplatesRoute: TemplatesRoute,
   AnimatedCardsIndexRoute: AnimatedCardsIndexRoute,
   AnimatedTestimonialsIndexRoute: AnimatedTestimonialsIndexRoute,
   ScrollBarsIndexRoute: ScrollBarsIndexRoute,
