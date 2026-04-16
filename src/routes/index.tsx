@@ -1,5 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router"
 import Container from "@/components/container"
-import { createFileRoute, Link } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -7,21 +7,8 @@ export const Route = createFileRoute("/")({
 
 function RouteComponent() {
   return (
-    <Container className="h-screen">
-      <div className="p-4">
-        <div>
-          see first component at click -----{" "}
-          <Link to="/animated-cards">/animated-cards</Link>
-        </div>
-        <div>
-          see second component at click -----{" "}
-          <Link to="/scroll-bars">/scroll-bars</Link>
-        </div>
-        <div>
-          see third component at click -----{" "}
-          <Link to="/animated-testimonials">/animated-testimonials</Link>
-        </div>
-      </div>
+    <Container className="h-screen p-4">
+      COMMING SOON EXPLORE CURRENT COMPONENTS ON /COMPONENTS by clicking on navbar :D landing page soon sorry,
     </Container>
   )
 }
