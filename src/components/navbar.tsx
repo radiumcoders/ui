@@ -4,6 +4,7 @@ import Container from "./container"
 import { Button } from "./ui/button"
 import { AnimatePresence, motion } from "motion/react"
 import { useEffect, useState } from "react"
+import { cn } from "@/lib/utils"
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -74,7 +75,18 @@ export default function Navbar() {
             </Button>
             <Button
               variant="outline"
-              className="hidden rounded font-heading shadow-[inset_0px_0px_4px_0px_#e5e5e5] md:inline-flex"
+              className={cn(
+                "inline-flex h-8 items-center justify-center gap-2 rounded-md",
+                "border border-dashed border-primary",
+                "bg-muted bg-linear-to-t from-muted to-background",
+                "px-2 text-sm font-medium whitespace-nowrap",
+                "shadow-md shadow-zinc-950/10",
+                "transition-colors duration-200 hover:to-muted",
+                "focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none",
+                "disabled:pointer-events-none disabled:opacity-50",
+                "dark:border-primary/40 dark:from-muted/50 dark:hover:to-muted/50",
+                "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+              )}
             >
               Sponsor
             </Button>
@@ -165,7 +177,7 @@ export default function Navbar() {
               <div className="border-t border-border px-4 py-4">
                 <div className="flex flex-col gap-2">
                   <Button
-                    className="w-full rounded-lg p-6 font-heading shadow-[inset_0px_0px_10px_0px_#fafafa]"
+                    className="w-full rounded-lg p-6 font-heading shadow-[inset_0px_0px_10px_0px_#fafafa] dark:shadow-[inset_0px_0px_8px_0px_#171717]"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Sponsor
@@ -188,7 +200,7 @@ const Logo = () => {
       viewBox="0 0 270 255"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="size-10"
+      className="size-10 dark:invert"
     >
       <path
         d="M67.5004 3.08656C36.493 20.9887 13.8672 50.4752 4.60036 85.0594C-4.66646 119.644 0.184795 156.493 18.0869 187.5C35.989 218.507 65.4755 241.133 100.06 250.4C134.644 259.667 171.493 254.816 202.5 236.913L183.833 204.581C161.401 217.532 134.743 221.042 109.723 214.338C84.7028 207.634 63.3708 191.265 50.4196 168.833C37.4683 146.4 33.9587 119.742 40.6628 94.7223C47.3668 69.7024 63.7354 48.3705 86.1676 35.4192L67.5004 3.08656Z"
