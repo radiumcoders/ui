@@ -179,17 +179,15 @@
 }
 
 @layer components {
-  .hero-energy-path {
-    stroke-dasharray: 18 82;
-    stroke-dashoffset: 100;
-    filter: drop-shadow(0 0 10px rgb(255 255 255 / 0.22));
-    animation: hero-energy-flow 4.8s linear infinite;
+  .hero-energy-base {
+    opacity: 0.45;
   }
 
-  .hero-energy-ambient {
-    stroke-dasharray: 10 90;
+  .hero-energy-trace {
+    stroke-dasharray: 14 86;
     stroke-dashoffset: 100;
-    animation: hero-energy-flow 6.2s linear infinite;
+    filter: drop-shadow(0 0 10px rgb(255 255 255 / 0.22));
+    animation: hero-energy-flow 3.8s linear infinite;
   }
 
   .hero-powered-title {
@@ -206,12 +204,12 @@
     animation: hero-glow-breathe 3.2s ease-in-out infinite;
   }
 
-  .dark .hero-energy-path {
-    filter: drop-shadow(0 0 11px rgb(148 163 184 / 0.3));
+  .dark .hero-energy-base {
+    opacity: 0.5;
   }
 
-  .dark .hero-energy-ambient {
-    opacity: 0.12;
+  .dark .hero-energy-trace {
+    filter: drop-shadow(0 0 11px rgb(148 163 184 / 0.3));
   }
 
   .dark .hero-title-radial-fade {
@@ -227,17 +225,17 @@
 @keyframes hero-energy-flow {
   0% {
     stroke-dashoffset: 100;
-    opacity: 0;
+    opacity: 0.25;
   }
-  12% {
+  15% {
     opacity: 1;
   }
-  68% {
+  70% {
     opacity: 1;
   }
   100% {
     stroke-dashoffset: 0;
-    opacity: 0;
+    opacity: 0.22;
   }
 }
 
@@ -262,8 +260,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-energy-path,
-  .hero-energy-ambient,
+  .hero-energy-trace,
   .hero-powered-title,
   .hero-title-radial-fade {
     animation: none;

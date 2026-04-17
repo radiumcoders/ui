@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router"
-import { List, X, XIcon } from "@phosphor-icons/react"
+import { List, XIcon } from "@phosphor-icons/react"
 import Container from "./container"
 import { Button } from "./ui/button"
 import { AnimatePresence, motion } from "motion/react"
