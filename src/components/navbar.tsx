@@ -1,52 +1,182 @@
 import { Link } from "@tanstack/react-router"
+import { List, X, XIcon } from "@phosphor-icons/react"
 import Container from "./container"
 import { Button } from "./ui/button"
-import { motion } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
+import { useEffect, useState } from "react"
 
 export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navlinks = [
     { title: "Components", href: "/components" },
     { title: "Blocks", href: "/blocks" },
     { title: "Templates", href: "/templates" },
   ]
+  const socialLinks = [
+    { title: "Twitter", href: "https://x.com/radiumcoders", external: true },
+  ]
   const MotionLink = motion.create(Link)
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    window.addEventListener("keydown", onEscape)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener("keydown", onEscape)
+    }
+  }, [isMobileMenuOpen])
+
   return (
-    <header className="sticky top-0 z-50 h-20 w-full bg-background/80 backdrop-blur-2xl">
-      <Container className="grid h-full grid-cols-[auto_1fr_auto] items-center px-4">
-        {/* LEFT */}
-        <div className="flex items-center">
-          <Link to="/">
-            <Logo />
-          </Link>
-        </div>
+    <>
+      <header className="sticky top-0 z-50 h-16 w-full border-b border-border bg-background/80 backdrop-blur-2xl">
+        <Container className="grid h-full grid-cols-[auto_1fr_auto] items-center px-4">
+          {/* LEFT */}
+          <div className="flex items-center">
+            <Link to="/">
+              <Logo />
+            </Link>
+          </div>
 
-        {/* CENTER */}
-        <div className="hidden md:flex items-center justify-center gap-6 font-heading">
-          {navlinks.map((item) => (
-            <MotionLink
-              whileHover={{ opacity: 0.7 }}
-              key={item.href}
-              to={item.href}
+          {/* CENTER */}
+          <div className="hidden items-center justify-center gap-6 font-heading md:flex">
+            {navlinks.map((item) => (
+              <MotionLink
+                whileHover={{ opacity: 0.7 }}
+                key={item.href}
+                to={item.href}
+              >
+                {item.title}
+              </MotionLink>
+            ))}
+          </div>
+
+          {/* RIGHT */}
+          <div className="flex items-center justify-end gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="Open mobile menu"
             >
-              {item.title}
-            </MotionLink>
-          ))}
-        </div>
-
-        {/* RIGHT */}
-        <div className="flex items-center justify-end gap-2">
-          <Button
-            variant="outline"
-            className="rounded font-heading shadow-[inset_0px_0px_4px_0px_#e5e5e5]"
-          >
-            Sponsor
-          </Button>
-          {/*<Button variant="outline" className="rounded font-heading">
+              <List size={22} weight="bold" />
+            </Button>
+            <Button
+              variant="outline"
+              className="hidden rounded font-heading shadow-[inset_0px_0px_4px_0px_#e5e5e5] md:inline-flex"
+            >
+              Sponsor
+            </Button>
+            {/*<Button variant="outline" className="rounded font-heading">
             Get Pro
           </Button>*/}
-        </div>
-      </Container>
-    </header>
+          </div>
+        </Container>
+      </header>
+      <AnimatePresence>
+        {isMobileMenuOpen ? (
+          <motion.div
+            className="fixed inset-0 z-70 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.button
+              className="absolute inset-0 bg-black/20"
+              aria-label="Close mobile menu"
+              onClick={() => setIsMobileMenuOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
+
+            <motion.nav
+              className="absolute inset-0 flex flex-col bg-background"
+              initial={{ x: "100%" }}
+              animate={{ x: "0%" }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 280, damping: 30 }}
+            >
+              <div className="flex h-16 items-center justify-between border-b border-border px-4">
+                <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Logo />
+                </Link>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label="Close mobile menu"
+                >
+                  <XIcon size={22} weight="bold" />
+                </Button>
+              </div>
+
+              <div className="flex flex-1 flex-col overflow-y-auto px-6 pt-6 pb-4">
+                <div className="flex flex-col border-b border-border pb-6">
+                  {navlinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      className="py-3 font-heading text-3xl tracking-tight"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="flex flex-col pt-6">
+                  {socialLinks.map((item) =>
+                    item.external ? (
+                      <a
+                        key={item.title}
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="py-2 text-lg font-medium"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.title}
+                      </a>
+                    ) : (
+                      <a
+                        key={item.title}
+                        href={item.href}
+                        className="py-2 text-lg font-medium"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.title}
+                      </a>
+                    )
+                  )}
+                </div>
+              </div>
+              <div className="border-t border-border px-4 py-4">
+                <div className="grid gap-2">
+                  <Button
+                    className="w-full rounded-lg p-6 font-heading shadow-[inset_0px_0px_10px_0px_#fafafa]"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Sponsor
+                  </Button>
+                </div>
+              </div>
+            </motion.nav>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </>
   )
 }
 
