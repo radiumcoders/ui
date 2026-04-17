@@ -38,7 +38,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <Navbar />
         {/* <Measurer />   */}
-        {children}
+        <main className="pt-8 px-4">
+          {children}
+        </main>
         <TanStackDevtools
           config={{
             position: "bottom-right",

@@ -19,14 +19,14 @@ function RouteComponent() {
 
 function HeroSection() {
   return (
-    <div className="mt-32 h-88 sm:mt-0">
-      <Container className="relative flex h-full flex-col items-start justify-end gap-6 p-4">
+    <div className="mt-16 h-88 sm:mt-0">
+      <Container className="relative flex h-full flex-col items-start justify-end gap-6 p-2">
         <div>
           <Badge className="rounded-lg border border-border bg-background p-4 text-primary shadow-[inset_0px_0px_6px_2px_#e5e5e5]">
             <CubeIcon size={32} weight="duotone" />
             MORE COMPONENTS IN COMING
           </Badge>
-          <h1 className="text-start text-5xl leading-tight font-bold sm:text-6xl">
+          <h1 className="text-start text-4xl leading-tight font-bold sm:text-6xl">
             Ship beautiful Websites <br /> Faster Then Ever.
           </h1>
           <p className="max-w-2xl pl-1 text-start leading-tight text-primary/60">
@@ -34,16 +34,16 @@ function HeroSection() {
             site feel like Premium.Just Copy, paste, customize.
           </p>
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <Link to="/components" viewTransition>
-            <Button className="h-12 p-4 px-4 shadow-[inset_0px_0px_10px_0px_#fafafa]">
+        <div className="flex w-full flex-col gap-2 sm:flex-row">
+          <Link to="/components" viewTransition className="w-full sm:w-auto">
+            <Button className="h-12 w-full p-4 px-4 shadow-[inset_0px_0px_10px_0px_#fafafa]">
               Explore Components
             </Button>
           </Link>
-          <Link to="/templates" viewTransition>
+          <Link to="/templates" viewTransition className="w-full sm:w-auto">
             <Button
               variant={"outline"}
-              className="h-12 p-4 px-4 shadow-[inset_0px_0px_8px_0px_#e5e5e5]"
+              className="h-12 w-full p-4 px-4 shadow-[inset_0px_0px_8px_0px_#e5e5e5]"
             >
               Explore Templates
             </Button>

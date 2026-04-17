@@ -163,7 +163,7 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="border-t border-border px-4 py-4">
-                <div className="grid gap-2">
+                <div className="flex flex-col gap-2">
                   <Button
                     className="w-full rounded-lg p-6 font-heading shadow-[inset_0px_0px_10px_0px_#fafafa]"
                     onClick={() => setIsMobileMenuOpen(false)}
