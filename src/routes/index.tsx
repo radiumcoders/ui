@@ -2,6 +2,8 @@ import { createFileRoute, Link, redirect, Router } from "@tanstack/react-router"
 import Container from "@/components/container"
 import { Button } from "@/components/ui/button"
 import { easeInOut, motion, scale } from "motion/react"
+import { Badge } from "@/components/ui/badge"
+import { CubeIcon } from "@phosphor-icons/react"
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -17,10 +19,14 @@ function RouteComponent() {
 
 function HeroSection() {
   return (
-    <div className="h-88 mt-32 sm:mt-0">
+    <div className="mt-32 h-88 sm:mt-0">
       <Container className="relative flex h-full flex-col items-start justify-end gap-6 p-4">
         <div>
-          <h1 className="text-start text-5xl sm:text-6xl leading-tight font-bold">
+          <Badge className="rounded-lg border border-border bg-background p-4 text-primary shadow-[inset_0px_0px_6px_2px_#e5e5e5]">
+            <CubeIcon size={32} weight="duotone" />
+            MORE COMPONENTS IN COMING
+          </Badge>
+          <h1 className="text-start text-5xl leading-tight font-bold sm:text-6xl">
             Ship beautiful Websites <br /> Faster Then Ever.
           </h1>
           <p className="max-w-2xl pl-1 text-start leading-tight text-primary/60">
@@ -30,9 +36,7 @@ function HeroSection() {
         </div>
         <div className="flex items-center justify-center gap-2">
           <Link to="/components" viewTransition>
-            <Button
-              className="h-12 p-4 px-4 shadow-[inset_0px_0px_10px_0px_#fafafa]"
-            >
+            <Button className="h-12 p-4 px-4 shadow-[inset_0px_0px_10px_0px_#fafafa]">
               Explore Components
             </Button>
           </Link>
