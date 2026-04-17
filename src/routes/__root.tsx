@@ -37,7 +37,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <Navbar />
-        <Measurer />
+        {/* <Measurer />   */}
         {children}
         <TanStackDevtools
           config={{

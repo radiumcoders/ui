@@ -172,3 +172,8 @@
     font-family: var(--font-mono);
     }
 }
+
+::selection {
+  background-color: #fee2e2;
+  color: #f87171;
+}

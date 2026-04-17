@@ -21,7 +21,7 @@ export default function Navbar() {
         </div>
 
         {/* CENTER */}
-        <div className="flex items-center justify-center gap-6 font-heading">
+        <div className="hidden md:flex items-center justify-center gap-6 font-heading">
           {navlinks.map((item) => (
             <MotionLink
               whileHover={{ opacity: 0.7 }}
@@ -35,7 +35,10 @@ export default function Navbar() {
 
         {/* RIGHT */}
         <div className="flex items-center justify-end gap-2">
-          <Button variant="outline" className="rounded font-heading">
+          <Button
+            variant="outline"
+            className="rounded font-heading shadow-[inset_0px_0px_4px_0px_#e5e5e5]"
+          >
             Sponsor
           </Button>
           {/*<Button variant="outline" className="rounded font-heading">
