@@ -10,7 +10,7 @@ function Container({
   return (
     <div
       className={cn(
-        "h-full w-full max-w-3xl mx-auto border-x border-border font-body",
+        "h-full w-full max-w-6xl mx-auto font-body",
         className
       )}
     >

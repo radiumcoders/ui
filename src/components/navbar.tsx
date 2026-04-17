@@ -11,7 +11,7 @@ export default function Navbar() {
   ]
   const MotionLink = motion.create(Link)
   return (
-    <header className="sticky top-0 z-50 h-20 w-full border-b border-border bg-background/80 backdrop-blur-2xl">
+    <header className="sticky top-0 z-50 h-20 w-full bg-background/80 backdrop-blur-2xl">
       <Container className="grid h-full grid-cols-[auto_1fr_auto] items-center px-4">
         {/* LEFT */}
         <div className="flex items-center">
