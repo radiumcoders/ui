@@ -1,0 +1,20 @@
+import { DocShowcase } from "@/components/docs/doc-showcase"
+import { AnimatedTestimonials } from "@/components/xcn/animated-testimonials"
+import { animatedTestimonialsDemo } from "./animated-testimonials-demo"
+
+# Animated testimonials
+
+Inline testimonial blur stack: hover a line to bring it into focus while the rest softens.
+
+<DocShowcase
+  command="npx shadcn@latest add animated-testimonials"
+  preview={
+    <div className="w-full max-w-3xl px-2">
+      <AnimatedTestimonials testimonials={animatedTestimonialsDemo} />
+    </div>
+  }
+>
+
+Provide `testimonials` as an array of `{ content, image }`. When `image` is empty, a circular placeholder is shown instead of an avatar.
+
+</DocShowcase>

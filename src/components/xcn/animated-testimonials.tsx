@@ -9,7 +9,7 @@ export type Testimonial = {
 export function AnimatedTestimonials({
   testimonials,
 }: {
-  testimonials: Testimonial[]
+  testimonials: Array<Testimonial>
 }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   return (

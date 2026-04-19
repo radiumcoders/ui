@@ -19,7 +19,7 @@ export function AnimatedCards({
   cards,
   rounded,
 }: {
-  cards: CardItem[]
+  cards: Array<CardItem>
   rounded?: boolean
 }) {
   return (

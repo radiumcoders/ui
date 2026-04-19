@@ -14,8 +14,12 @@ import { Route as ComponentsRouteImport } from './routes/components'
 import { Route as BlocksRouteImport } from './routes/blocks'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ScrollBarsIndexRouteImport } from './routes/scroll-bars/index'
+import { Route as DocsIndexRouteImport } from './routes/docs/index'
 import { Route as AnimatedTestimonialsIndexRouteImport } from './routes/animated-testimonials/index'
 import { Route as AnimatedCardsIndexRouteImport } from './routes/animated-cards/index'
+import { Route as DocsScrollBarsRouteImport } from './routes/docs/scroll-bars'
+import { Route as DocsAnimatedTestimonialsRouteImport } from './routes/docs/animated-testimonials'
+import { Route as DocsAnimatedCardsRouteImport } from './routes/docs/animated-cards'
 
 const TemplatesRoute = TemplatesRouteImport.update({
   id: '/templates',
@@ -42,6 +46,11 @@ const ScrollBarsIndexRoute = ScrollBarsIndexRouteImport.update({
   path: '/scroll-bars/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocsIndexRoute = DocsIndexRouteImport.update({
+  id: '/docs/',
+  path: '/docs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnimatedTestimonialsIndexRoute =
   AnimatedTestimonialsIndexRouteImport.update({
     id: '/animated-testimonials/',
@@ -53,14 +62,34 @@ const AnimatedCardsIndexRoute = AnimatedCardsIndexRouteImport.update({
   path: '/animated-cards/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocsScrollBarsRoute = DocsScrollBarsRouteImport.update({
+  id: '/docs/scroll-bars',
+  path: '/docs/scroll-bars',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsAnimatedTestimonialsRoute =
+  DocsAnimatedTestimonialsRouteImport.update({
+    id: '/docs/animated-testimonials',
+    path: '/docs/animated-testimonials',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DocsAnimatedCardsRoute = DocsAnimatedCardsRouteImport.update({
+  id: '/docs/animated-cards',
+  path: '/docs/animated-cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blocks': typeof BlocksRoute
   '/components': typeof ComponentsRoute
   '/templates': typeof TemplatesRoute
+  '/docs/animated-cards': typeof DocsAnimatedCardsRoute
+  '/docs/animated-testimonials': typeof DocsAnimatedTestimonialsRoute
+  '/docs/scroll-bars': typeof DocsScrollBarsRoute
   '/animated-cards/': typeof AnimatedCardsIndexRoute
   '/animated-testimonials/': typeof AnimatedTestimonialsIndexRoute
+  '/docs/': typeof DocsIndexRoute
   '/scroll-bars/': typeof ScrollBarsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -68,8 +97,12 @@ export interface FileRoutesByTo {
   '/blocks': typeof BlocksRoute
   '/components': typeof ComponentsRoute
   '/templates': typeof TemplatesRoute
+  '/docs/animated-cards': typeof DocsAnimatedCardsRoute
+  '/docs/animated-testimonials': typeof DocsAnimatedTestimonialsRoute
+  '/docs/scroll-bars': typeof DocsScrollBarsRoute
   '/animated-cards': typeof AnimatedCardsIndexRoute
   '/animated-testimonials': typeof AnimatedTestimonialsIndexRoute
+  '/docs': typeof DocsIndexRoute
   '/scroll-bars': typeof ScrollBarsIndexRoute
 }
 export interface FileRoutesById {
@@ -78,8 +111,12 @@ export interface FileRoutesById {
   '/blocks': typeof BlocksRoute
   '/components': typeof ComponentsRoute
   '/templates': typeof TemplatesRoute
+  '/docs/animated-cards': typeof DocsAnimatedCardsRoute
+  '/docs/animated-testimonials': typeof DocsAnimatedTestimonialsRoute
+  '/docs/scroll-bars': typeof DocsScrollBarsRoute
   '/animated-cards/': typeof AnimatedCardsIndexRoute
   '/animated-testimonials/': typeof AnimatedTestimonialsIndexRoute
+  '/docs/': typeof DocsIndexRoute
   '/scroll-bars/': typeof ScrollBarsIndexRoute
 }
 export interface FileRouteTypes {
@@ -89,8 +126,12 @@ export interface FileRouteTypes {
     | '/blocks'
     | '/components'
     | '/templates'
+    | '/docs/animated-cards'
+    | '/docs/animated-testimonials'
+    | '/docs/scroll-bars'
     | '/animated-cards/'
     | '/animated-testimonials/'
+    | '/docs/'
     | '/scroll-bars/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -98,8 +139,12 @@ export interface FileRouteTypes {
     | '/blocks'
     | '/components'
     | '/templates'
+    | '/docs/animated-cards'
+    | '/docs/animated-testimonials'
+    | '/docs/scroll-bars'
     | '/animated-cards'
     | '/animated-testimonials'
+    | '/docs'
     | '/scroll-bars'
   id:
     | '__root__'
@@ -107,8 +152,12 @@ export interface FileRouteTypes {
     | '/blocks'
     | '/components'
     | '/templates'
+    | '/docs/animated-cards'
+    | '/docs/animated-testimonials'
+    | '/docs/scroll-bars'
     | '/animated-cards/'
     | '/animated-testimonials/'
+    | '/docs/'
     | '/scroll-bars/'
   fileRoutesById: FileRoutesById
 }
@@ -117,8 +166,12 @@ export interface RootRouteChildren {
   BlocksRoute: typeof BlocksRoute
   ComponentsRoute: typeof ComponentsRoute
   TemplatesRoute: typeof TemplatesRoute
+  DocsAnimatedCardsRoute: typeof DocsAnimatedCardsRoute
+  DocsAnimatedTestimonialsRoute: typeof DocsAnimatedTestimonialsRoute
+  DocsScrollBarsRoute: typeof DocsScrollBarsRoute
   AnimatedCardsIndexRoute: typeof AnimatedCardsIndexRoute
   AnimatedTestimonialsIndexRoute: typeof AnimatedTestimonialsIndexRoute
+  DocsIndexRoute: typeof DocsIndexRoute
   ScrollBarsIndexRoute: typeof ScrollBarsIndexRoute
 }
 
@@ -159,6 +212,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScrollBarsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/docs/': {
+      id: '/docs/'
+      path: '/docs'
+      fullPath: '/docs/'
+      preLoaderRoute: typeof DocsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/animated-testimonials/': {
       id: '/animated-testimonials/'
       path: '/animated-testimonials'
@@ -173,6 +233,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnimatedCardsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/docs/scroll-bars': {
+      id: '/docs/scroll-bars'
+      path: '/docs/scroll-bars'
+      fullPath: '/docs/scroll-bars'
+      preLoaderRoute: typeof DocsScrollBarsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs/animated-testimonials': {
+      id: '/docs/animated-testimonials'
+      path: '/docs/animated-testimonials'
+      fullPath: '/docs/animated-testimonials'
+      preLoaderRoute: typeof DocsAnimatedTestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs/animated-cards': {
+      id: '/docs/animated-cards'
+      path: '/docs/animated-cards'
+      fullPath: '/docs/animated-cards'
+      preLoaderRoute: typeof DocsAnimatedCardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -181,8 +262,12 @@ const rootRouteChildren: RootRouteChildren = {
   BlocksRoute: BlocksRoute,
   ComponentsRoute: ComponentsRoute,
   TemplatesRoute: TemplatesRoute,
+  DocsAnimatedCardsRoute: DocsAnimatedCardsRoute,
+  DocsAnimatedTestimonialsRoute: DocsAnimatedTestimonialsRoute,
+  DocsScrollBarsRoute: DocsScrollBarsRoute,
   AnimatedCardsIndexRoute: AnimatedCardsIndexRoute,
   AnimatedTestimonialsIndexRoute: AnimatedTestimonialsIndexRoute,
+  DocsIndexRoute: DocsIndexRoute,
   ScrollBarsIndexRoute: ScrollBarsIndexRoute,
 }
 export const routeTree = rootRouteImport

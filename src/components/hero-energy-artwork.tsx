@@ -20,7 +20,7 @@ function EnergySvg({
   paths,
   viewBox,
 }: {
-  paths: { d: string; color: string; delay: string }[]
+  paths: Array<{ d: string; color: string; delay: string }>
   viewBox: string
 }) {
   return (

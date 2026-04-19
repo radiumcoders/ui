@@ -1,15 +1,16 @@
+import { ListIcon, XIcon } from "@phosphor-icons/react"
 import { Link } from "@tanstack/react-router"
-import { List, XIcon } from "@phosphor-icons/react"
-import Container from "./container"
-import { Button } from "./ui/button"
 import { AnimatePresence, motion } from "motion/react"
 import { useEffect, useState } from "react"
+import Container from "./container"
+import { Button } from "./ui/button"
 import { cn } from "@/lib/utils"
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navlinks = [
     { title: "Components", href: "/components" },
+    { title: "Docs", href: "/docs" },
     { title: "Blocks", href: "/blocks" },
     { title: "Templates", href: "/templates" },
   ]
@@ -71,7 +72,7 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open mobile menu"
             >
-              <List size={22} weight="bold" />
+              <ListIcon size={22} weight="bold" />
             </Button>
             <Button
               variant="outline"
@@ -90,7 +91,7 @@ export default function Navbar() {
             >
               Sponsor
             </Button>
-            {/*<Button variant="outline" className="rounded font-heading">
+            {/* <Button variant="outline" className="rounded font-heading">
             Get Pro
           </Button>*/}
           </div>

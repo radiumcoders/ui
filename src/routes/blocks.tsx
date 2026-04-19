@@ -1,5 +1,5 @@
-import Container from "@/components/container"
 import { createFileRoute } from "@tanstack/react-router"
+import Container from "@/components/container"
 
 export const Route = createFileRoute("/blocks")({
   component: RouteComponent,

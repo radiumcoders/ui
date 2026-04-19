@@ -1,10 +1,11 @@
+
+import { CubeIcon } from "@phosphor-icons/react"
+import { Link, createFileRoute } from "@tanstack/react-router"
 import Container from "@/components/container"
 import { HeroEnergyArtwork } from "@/components/hero-energy-artwork"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { CubeIcon } from "@phosphor-icons/react"
-import { createFileRoute, Link } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,

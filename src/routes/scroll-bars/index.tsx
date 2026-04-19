@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router"
-import { ScrollBars, ScrollBarsVertical } from "@/components/xcn/scroll-bars"
 import { useScroll } from "motion/react"
+import { ScrollBars, ScrollBarsVertical } from "@/components/xcn/scroll-bars"
 
 export const Route = createFileRoute("/scroll-bars/")({
   component: RouteComponent,

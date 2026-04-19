@@ -1,4 +1,5 @@
-import { type MotionValue, motion, useSpring, useTransform } from "motion/react"
+import {  motion, useSpring, useTransform } from "motion/react"
+import type {MotionValue} from "motion/react";
 import { cn } from "@/lib/utils"
 
 const INDICATOR_WIDTH = 4
