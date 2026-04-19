@@ -18,12 +18,14 @@ export type CardItem = {
 export function AnimatedCards({
   cards,
   rounded,
+  className,
 }: {
   cards: Array<CardItem>
   rounded?: boolean
+  className?: string
 }) {
   return (
-    <div className="mx-auto flex h-screen w-full items-center justify-center overflow-hidden">
+    <div className={cn("mx-auto flex h-screen w-full items-center justify-center overflow-hidden", className)}>
       {/* Mobile Swipe UI */}
       <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto px-6 py-10 [-ms-overflow-style:none] [scrollbar-width:none] md:hidden [&::-webkit-scrollbar]:hidden">
         {cards.map((card) => (
@@ -44,8 +46,8 @@ export function AnimatedCards({
         ))}
       </div>
 
-      {/* Desktop Animated UI */}
-      <div className="relative hidden h-84 w-264 shrink-0 origin-center md:block md:scale-[0.65] lg:scale-90 xl:scale-100">
+        {/* Desktop Animated UI */}
+        <div className="relative hidden h-84 w-264 shrink-0 origin-center md:block md:scale-[0.65] lg:scale-90 xl:scale-100">
         {cards.map((card) => (
           <motion.div
             key={card.title + "-desktop"}

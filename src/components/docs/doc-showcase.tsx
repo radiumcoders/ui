@@ -23,6 +23,10 @@ export function DocShowcase({
 
   const copy = useCallback(async () => {
     try {
+      // Check if clipboard API is available
+      if (!navigator.clipboard) {
+        throw new Error('Clipboard API not available')
+      }
       await navigator.clipboard.writeText(command)
       setCopied(true)
       window.setTimeout(() => setCopied(false), 2000)
@@ -33,9 +37,12 @@ export function DocShowcase({
 
   return (
     <section className={cn("not-prose w-full space-y-4", className)}>
-      <div className="border border-border bg-background p-3 md:p-8">
+      <div className="border border-border bg-background p-0">
         <div className="flex w-full items-center justify-center overflow-x-auto">
-          {preview}
+          {/* Limit preview width to prevent overflow and scale down large components */}
+          <div className="max-w-[800px] w-full scale-75 md:scale-90">
+            {preview}
+          </div>
         </div>
       </div>
 
