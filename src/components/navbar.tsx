@@ -1,11 +1,16 @@
+import { cn } from "@/lib/utils"
+import {
+  ListIcon,
+  XIcon,
+  GithubLogoIcon,
+  XLogoIcon,
+} from "@phosphor-icons/react"
 import { Link } from "@tanstack/react-router"
-import { ListIcon, XIcon } from "@phosphor-icons/react"
-import Container from "./container"
-import { Button } from "./ui/button"
 import { AnimatePresence, motion } from "motion/react"
 import { useEffect, useState } from "react"
-import { cn } from "@/lib/utils"
+import Container from "./container"
 import ThemeToggle from "./theme-toggel"
+import { Button } from "./ui/button"
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -16,6 +21,11 @@ export default function Navbar() {
   ]
   const socialLinks = [
     { title: "Twitter", href: "https://x.com/radiumcoders", external: true },
+    {
+      title: "GitHub",
+      href: "https://github.com/radiumcoders",
+      external: true,
+    },
   ]
   const MotionLink = motion.create(Link)
 
@@ -75,6 +85,28 @@ export default function Navbar() {
               <ListIcon size={22} weight="bold" />
             </Button>
             <div className="flex items-center gap-4">
+              <a
+                href="https://github.com/radiumcoders"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                className="hidden md:block"
+              >
+                <Button variant="ghost" size="icon">
+                  <GithubLogoIcon size={20} weight="duotone" />
+                </Button>
+              </a>
+              <a
+                href="https://x.com/radiumcoders"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Twitter"
+                className="hidden md:block"
+              >
+                <Button variant="ghost" size="icon">
+                  <XLogoIcon size={20} weight="duotone" />
+                </Button>
+              </a>
               <ThemeToggle />
               <a href="https://github.com/sponsors/radiumcoders">
                 <Button
