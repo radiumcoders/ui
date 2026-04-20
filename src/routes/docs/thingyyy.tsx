@@ -20,6 +20,10 @@ import {
 import { getComponentDocsRegistry } from "@/lib/docs-component-registry"
 import { getDocsPreviewRegistry } from "@/lib/docs-preview-registry"
 import { cn } from "@/lib/utils"
+import {
+  CodeBlockCommand,
+  convertNpmCommand,
+} from "@/components/code-block-command"
 
 export const Route = createFileRoute("/docs/thingyyy")({
   component: ThingyyyDocsPage,
@@ -85,19 +89,19 @@ function ThingyyyDocsPage() {
           )}
         >
           <div className="flex h-full flex-col p-4 px-0">
-            <div className="flex items-center justify-between border-b border-border pb-3 px-4">
+            <div className="flex items-center justify-between border-b border-border px-4 pb-3">
               <h2 className="font-heading text-lg">Docs Navigation</h2>
               <Button
                 variant="ghost"
                 size="sm"
-                className="md:hidden px-4"
+                className="px-4 md:hidden"
                 onClick={() => setIsSidebarOpen(false)}
               >
                 Close
               </Button>
             </div>
 
-            <div className="mt-4 flex-1 space-y-6 overflow-y-auto pr-1 px-4 pb-4">
+            <div className="mt-4 flex-1 space-y-6 overflow-y-auto px-4 pr-1 pb-4">
               <div>
                 <p className="mb-2 text-xs tracking-wide text-muted-foreground uppercase">
                   App Links
@@ -189,7 +193,7 @@ function ThingyyyDocsPage() {
         onOpenChange={setIsDrawerOpen}
         direction="bottom"
       >
-        <DrawerContent className="max-h-fit w-full overflow-y-auto">
+        <DrawerContent className="w-full overflow-hidden">
           <DrawerHeader>
             <DrawerTitle>
               {activeComponent?.name ?? "Missing Component Doc"}
@@ -199,15 +203,17 @@ function ThingyyyDocsPage() {
                 "This component is missing metadata. Add an MDX file in src/content/docs-components."}
             </DrawerDescription>
           </DrawerHeader>
-          <div className="space-y-4 px-4 pb-6">
+          <div className="max-h-[72vh] space-y-4 overflow-y-auto px-4 pb-6">
             <div className="rounded-lg border border-border bg-muted/50 p-3">
               <p className="mb-1 text-xs text-muted-foreground uppercase">
                 Command
               </p>
-              <code className="text-sm">
-                {activeComponent?.command ??
-                  "npx shadcn@latest add your-component"}
-              </code>
+              <CodeBlockCommand
+                {...convertNpmCommand(
+                  activeComponent?.command ??
+                    "npx shadcn@latest add your-component"
+                )}
+              />
             </div>
             <div>
               <p className="mb-2 text-xs text-muted-foreground uppercase">

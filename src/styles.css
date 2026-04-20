@@ -58,6 +58,8 @@
     --font-fira-code: Fira Code Variable;
     --font-inter: Inter Variable;
     --font-geist-mono: Geist Mono Variable;
+    --color-code: var(--code);
+    --color-code-foreground: var(--code-foreground);
 }
 
 :root {
@@ -93,6 +95,8 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+    --code: oklch(0.985 0 0);
+    --code-foreground: oklch(0.141 0.005 285.823);
 }
 
 .dark {
@@ -127,6 +131,8 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
+    --code: oklch(0.21 0.006 285.885);
+    --code-foreground: oklch(0.985 0 0);
 }
 
 @layer base {

@@ -23,6 +23,7 @@
   },
   "registries": {
     "@fonttrio": "https://www.fonttrio.xyz/r/{name}.json",
-    "@react-bits": "https://reactbits.dev/r/{name}.json"
+    "@react-bits": "https://reactbits.dev/r/{name}.json",
+    "@ncdai": "https://chanhdai.com/r/{name}.json"
   }
 }
