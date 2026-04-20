@@ -1,9 +1,14 @@
-import { useMemo, useState } from "react"
+import {
+  BookIcon,
+  CaretRightIcon,
+  CubeIcon,
+  FolderIcon,
+  HouseIcon,
+  Info,
+  List,
+} from "@phosphor-icons/react"
 import { Link, createFileRoute } from "@tanstack/react-router"
-import { CaretRight, Info, List } from "@phosphor-icons/react"
-import { getComponentDocsRegistry } from "@/lib/docs-component-registry"
-import { getDocsPreviewRegistry } from "@/lib/docs-preview-registry"
-import { cn } from "@/lib/utils"
+import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Drawer,
@@ -12,16 +17,19 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer"
+import { getComponentDocsRegistry } from "@/lib/docs-component-registry"
+import { getDocsPreviewRegistry } from "@/lib/docs-preview-registry"
+import { cn } from "@/lib/utils"
 
 export const Route = createFileRoute("/docs/thingyyy")({
   component: ThingyyyDocsPage,
 })
 
 const appLinks = [
-  { title: "Components", href: "/components" },
-  { title: "Blocks", href: "/blocks" },
-  { title: "Templates", href: "/templates" },
-  { title: "Docs", href: "/docs/thingyyy" },
+  { title: "Home", href: "/", icon: <HouseIcon /> },
+  { title: "Blocks", href: "/blocks", icon: <CubeIcon /> },
+  { title: "Templates", href: "/templates", icon: <FolderIcon /> },
+  { title: "Docs", href: "/docs/thingyyy", icon: <BookIcon /> },
 ] as const
 
 function renderMdxBody(rawBody: string) {
@@ -37,7 +45,10 @@ function renderMdxBody(rawBody: string) {
       {lines.map((line, idx) =>
         line.startsWith("- ") ? (
           <p key={`${line}-${idx}`} className="flex items-start gap-2">
-            <CaretRight size={14} className="mt-1 shrink-0 text-foreground" />
+            <CaretRightIcon
+              size={14}
+              className="mt-1 shrink-0 text-foreground"
+            />
             <span>{line.replace(/^- /, "")}</span>
           </p>
         ) : (
@@ -57,7 +68,9 @@ function ThingyyyDocsPage() {
     componentDocs[0]?.id ?? "animated-cards"
   )
 
-  const activeComponent = componentDocs.find((item) => item.id === activeComponentId)
+  const activeComponent = componentDocs.find(
+    (item) => item.id === activeComponentId
+  )
   const activePreview = previewMap[activeComponentId]
 
   return (
@@ -66,23 +79,25 @@ function ThingyyyDocsPage() {
         <aside
           className={cn(
             "fixed inset-y-0 left-0 z-30 w-80 border-r border-border bg-card/95 backdrop-blur transition-transform duration-200 md:relative md:translate-x-0",
-            isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+            isSidebarOpen
+              ? "translate-x-0"
+              : "-translate-x-full md:translate-x-0"
           )}
         >
-          <div className="flex h-full flex-col p-4">
-            <div className="flex items-center justify-between border-b border-border pb-3">
+          <div className="flex h-full flex-col p-4 px-0">
+            <div className="flex items-center justify-between border-b border-border pb-3 px-4">
               <h2 className="font-heading text-lg">Docs Navigation</h2>
               <Button
                 variant="ghost"
                 size="sm"
-                className="md:hidden"
+                className="md:hidden px-4"
                 onClick={() => setIsSidebarOpen(false)}
               >
                 Close
               </Button>
             </div>
 
-            <div className="mt-4 flex-1 space-y-6 overflow-y-auto pr-1">
+            <div className="mt-4 flex-1 space-y-6 overflow-y-auto pr-1 px-4 pb-4">
               <div>
                 <p className="mb-2 text-xs tracking-wide text-muted-foreground uppercase">
                   App Links
@@ -92,9 +107,9 @@ function ThingyyyDocsPage() {
                     <Link
                       key={item.href}
                       to={item.href}
-                      className="inline-flex h-9 w-full items-center justify-start rounded-md px-3 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+                      className="inline-flex h-9 w-full items-center justify-start gap-2 rounded-md px-3 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
                     >
-                      {item.title}
+                      {item.icon} {item.title}
                     </Link>
                   ))}
                 </div>
@@ -102,13 +117,15 @@ function ThingyyyDocsPage() {
 
               <div>
                 <p className="mb-2 text-xs tracking-wide text-muted-foreground uppercase">
-                  Components
+                  Components Docs
                 </p>
-                <div className="space-y-1">
+                <div className="space-y-1 pr-4">
                   {componentDocs.map((item) => (
                     <Button
                       key={item.id}
-                      variant={item.id === activeComponentId ? "default" : "ghost"}
+                      variant={
+                        item.id === activeComponentId ? "default" : "ghost"
+                      }
                       className="w-full justify-start"
                       onClick={() => {
                         setActiveComponentId(item.id)
@@ -155,7 +172,7 @@ function ThingyyyDocsPage() {
             </Button>
           </div>
 
-          <section className="flex h-[calc(100svh-4rem)] items-center justify-center overflow-auto p-4">
+          <section className="flex h-[calc(100svh)] items-center justify-center overflow-hidden">
             <div className="mx-auto w-full max-w-6xl">
               {activePreview ?? (
                 <div className="rounded-lg border border-dashed border-border p-8 text-center text-muted-foreground">
@@ -167,10 +184,16 @@ function ThingyyyDocsPage() {
         </main>
       </div>
 
-      <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen} direction="bottom">
-        <DrawerContent className="max-h-[80svh] w-full overflow-y-auto">
+      <Drawer
+        open={isDrawerOpen}
+        onOpenChange={setIsDrawerOpen}
+        direction="bottom"
+      >
+        <DrawerContent className="max-h-fit w-full overflow-y-auto">
           <DrawerHeader>
-            <DrawerTitle>{activeComponent?.name ?? "Missing Component Doc"}</DrawerTitle>
+            <DrawerTitle>
+              {activeComponent?.name ?? "Missing Component Doc"}
+            </DrawerTitle>
             <DrawerDescription>
               {activeComponent?.description ??
                 "This component is missing metadata. Add an MDX file in src/content/docs-components."}
@@ -178,23 +201,33 @@ function ThingyyyDocsPage() {
           </DrawerHeader>
           <div className="space-y-4 px-4 pb-6">
             <div className="rounded-lg border border-border bg-muted/50 p-3">
-              <p className="mb-1 text-xs uppercase text-muted-foreground">Command</p>
+              <p className="mb-1 text-xs text-muted-foreground uppercase">
+                Command
+              </p>
               <code className="text-sm">
-                {activeComponent?.command ?? "npx shadcn@latest add your-component"}
+                {activeComponent?.command ??
+                  "npx shadcn@latest add your-component"}
               </code>
             </div>
             <div>
-              <p className="mb-2 text-xs uppercase text-muted-foreground">Props</p>
+              <p className="mb-2 text-xs text-muted-foreground uppercase">
+                Props
+              </p>
               <div className="space-y-2">
                 {(activeComponent?.props ?? []).map((prop) => (
-                  <div key={prop.name} className="rounded-lg border border-border p-3">
+                  <div
+                    key={prop.name}
+                    className="rounded-lg border border-border p-3"
+                  >
                     <p className="font-medium">
                       {prop.name}
                       <span className="ml-2 text-xs text-muted-foreground">
                         {prop.type}
                       </span>
                     </p>
-                    <p className="text-sm text-muted-foreground">{prop.details}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {prop.details}
+                    </p>
                   </div>
                 ))}
                 {!activeComponent?.props.length ? (
@@ -205,7 +238,9 @@ function ThingyyyDocsPage() {
               </div>
             </div>
             <div>
-              <p className="mb-2 text-xs uppercase text-muted-foreground">Notes</p>
+              <p className="mb-2 text-xs text-muted-foreground uppercase">
+                Notes
+              </p>
               <div className="rounded-lg border border-border p-3">
                 {activeComponent ? renderMdxBody(activeComponent.body) : null}
               </div>

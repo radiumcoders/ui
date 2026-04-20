@@ -56,7 +56,7 @@ export function AnimatedCards({
   return (
     <div
       className={cn(
-        "mx-auto flex h-screen w-full items-center justify-center overflow-hidden",
+        "mx-auto flex h-[calc(100svh-60px)] w-full items-center justify-center overflow-hidden",
         className
       )}
     >

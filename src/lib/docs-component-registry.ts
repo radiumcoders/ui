@@ -22,6 +22,19 @@ const docsModules: Record<string, string> = import.meta.glob(
   }
 )
 
+function toKebabCase(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+}
+
+function getShadcnCommandFromId(id: string): string {
+  const normalizedId = toKebabCase(id)
+  return `pnpm dlx shadcn@latest add ${normalizedId}`
+}
+
 function parseFrontmatter(raw: string): Omit<ComponentDocMeta, "body"> | null {
   const match = raw.match(/^---\s*([\s\S]*?)\s*---/)
   if (!match) return null
@@ -31,15 +44,22 @@ function parseFrontmatter(raw: string): Omit<ComponentDocMeta, "body"> | null {
     const hasRequiredFields =
       typeof parsed.id === "string" &&
       typeof parsed.name === "string" &&
-      typeof parsed.command === "string" &&
       typeof parsed.description === "string" &&
       Array.isArray(parsed.props)
 
     if (!hasRequiredFields) return null
 
+    if (
+      typeof parsed.id !== "string" ||
+      typeof parsed.name !== "string" ||
+      typeof parsed.description !== "string"
+    ) {
+      return null
+    }
+
     const id = parsed.id
     const name = parsed.name
-    const command = parsed.command
+    const command = parsed.command?.trim() || getShadcnCommandFromId(id)
     const description = parsed.description
     if (!id || !name || !command || !description) return null
 

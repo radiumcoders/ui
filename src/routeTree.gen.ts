@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TemplatesRouteImport } from './routes/templates'
-import { Route as ComponentsRouteImport } from './routes/components'
 import { Route as BlocksRouteImport } from './routes/blocks'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsThingyyyRouteImport } from './routes/docs/thingyyy'
@@ -18,11 +17,6 @@ import { Route as DocsThingyyyRouteImport } from './routes/docs/thingyyy'
 const TemplatesRoute = TemplatesRouteImport.update({
   id: '/templates',
   path: '/templates',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ComponentsRoute = ComponentsRouteImport.update({
-  id: '/components',
-  path: '/components',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlocksRoute = BlocksRouteImport.update({
@@ -44,14 +38,12 @@ const DocsThingyyyRoute = DocsThingyyyRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blocks': typeof BlocksRoute
-  '/components': typeof ComponentsRoute
   '/templates': typeof TemplatesRoute
   '/docs/thingyyy': typeof DocsThingyyyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blocks': typeof BlocksRoute
-  '/components': typeof ComponentsRoute
   '/templates': typeof TemplatesRoute
   '/docs/thingyyy': typeof DocsThingyyyRoute
 }
@@ -59,28 +51,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blocks': typeof BlocksRoute
-  '/components': typeof ComponentsRoute
   '/templates': typeof TemplatesRoute
   '/docs/thingyyy': typeof DocsThingyyyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blocks' | '/components' | '/templates' | '/docs/thingyyy'
+  fullPaths: '/' | '/blocks' | '/templates' | '/docs/thingyyy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blocks' | '/components' | '/templates' | '/docs/thingyyy'
-  id:
-    | '__root__'
-    | '/'
-    | '/blocks'
-    | '/components'
-    | '/templates'
-    | '/docs/thingyyy'
+  to: '/' | '/blocks' | '/templates' | '/docs/thingyyy'
+  id: '__root__' | '/' | '/blocks' | '/templates' | '/docs/thingyyy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlocksRoute: typeof BlocksRoute
-  ComponentsRoute: typeof ComponentsRoute
   TemplatesRoute: typeof TemplatesRoute
   DocsThingyyyRoute: typeof DocsThingyyyRoute
 }
@@ -92,13 +76,6 @@ declare module '@tanstack/react-router' {
       path: '/templates'
       fullPath: '/templates'
       preLoaderRoute: typeof TemplatesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/components': {
-      id: '/components'
-      path: '/components'
-      fullPath: '/components'
-      preLoaderRoute: typeof ComponentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blocks': {
@@ -128,7 +105,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlocksRoute: BlocksRoute,
-  ComponentsRoute: ComponentsRoute,
   TemplatesRoute: TemplatesRoute,
   DocsThingyyyRoute: DocsThingyyyRoute,
 }

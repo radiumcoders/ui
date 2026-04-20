@@ -4,17 +4,32 @@ import { AnimatedTestimonials } from "@/components/xcn/animated-testimonials"
 const testimonialsData: Array<Testimonial> = [
   {
     content:
-      "Better than a course, it feels like an interactive handbook for design quality.",
+      "Better than a course, it's a reference manual to making great work full of tactical secrets I haven't seen anywhere else.",
     image: "",
   },
   {
     content:
-      "Useful for landing pages where you need attention-grabbing social proof.",
+      "Better than a course, it's a reference manual to making great work full of tactical secrets I haven't seen anywhere else.",
     image: "",
   },
   {
     content:
-      "Hover states and blur transitions make long testimonials easier to scan.",
+      "Better than a course, it's a reference manual to making great work full of tactical secrets I haven't seen anywhere else.",
+    image: "",
+  },
+  {
+    content:
+      "It's kind of like reading a beautifully designed interactive Medium article. It's like a guided tour of a beautiful garden.",
+    image: "",
+  },
+  {
+    content:
+      "It's not often the best-of-the-best bring you along and show you how it's done.",
+    image: "",
+  },
+  {
+    content:
+      "The bar he sets is ridiculous. Every company I know wants to work with him.",
     image: "",
   },
 ]

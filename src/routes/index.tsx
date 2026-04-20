@@ -73,9 +73,9 @@ function HeroSection() {
           </div>
         </div>
         <div className="relative z-20 flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link to="/components" viewTransition className="w-full sm:w-auto">
+          <Link to="/docs/thingyyy" viewTransition className="w-full sm:w-auto">
             <Button className="h-12 w-full border-2 border-primary px-5 text-base shadow-[0_12px_30px_-14px_rgba(0,0,0,0.65)] dark:shadow-[0_16px_34px_-16px_rgba(0,0,0,0.85)] sm:w-auto">
-              Explore Components
+              Explore Docs
             </Button>
           </Link>
           <Link to="/templates" viewTransition className="w-full sm:w-auto">
