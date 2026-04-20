@@ -1,0 +1,21 @@
+import { DocShowcase } from "@/components/docs/doc-showcase"
+import { AnimatedCards } from "@/components/xcn/animated-cards"
+import { animatedCardsDemo } from "./animated-cards-demo"
+
+# Animated cards
+
+Interactive stacked cards with motion and depth. Use for feature grids, product highlights, or marketing stacks.
+
+<DocShowcase
+    className="max-w-7xl"
+  command="npx shadcn@latest add animated-cards"
+  preview={
+    <div className="flex min-h-[280px] w-full max-w-7xl items-center justify-center bg-white dark:bg-neutral-950">
+      <AnimatedCards cards={animatedCardsDemo} />
+    </div>
+  }
+>
+
+Pass an array of **card** objects with `title`, `description`, `className`, `skeleton`, `config` (`x`, `y`, `zIndex`), and optional `rotation`. Set the `rounded` prop on `AnimatedCards` for softer corners.
+
+</DocShowcase>

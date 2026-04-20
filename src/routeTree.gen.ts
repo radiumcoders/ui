@@ -34,6 +34,22 @@ const DocsThingyyyRoute = DocsThingyyyRouteImport.update({
   path: '/docs/thingyyy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocsScrollBarsRoute = DocsScrollBarsRouteImport.update({
+  id: '/docs/scroll-bars',
+  path: '/docs/scroll-bars',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsAnimatedTestimonialsRoute =
+  DocsAnimatedTestimonialsRouteImport.update({
+    id: '/docs/animated-testimonials',
+    path: '/docs/animated-testimonials',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DocsAnimatedCardsRoute = DocsAnimatedCardsRouteImport.update({
+  id: '/docs/animated-cards',
+  path: '/docs/animated-cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -97,6 +113,27 @@ declare module '@tanstack/react-router' {
       path: '/docs/thingyyy'
       fullPath: '/docs/thingyyy'
       preLoaderRoute: typeof DocsThingyyyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs/scroll-bars': {
+      id: '/docs/scroll-bars'
+      path: '/docs/scroll-bars'
+      fullPath: '/docs/scroll-bars'
+      preLoaderRoute: typeof DocsScrollBarsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs/animated-testimonials': {
+      id: '/docs/animated-testimonials'
+      path: '/docs/animated-testimonials'
+      fullPath: '/docs/animated-testimonials'
+      preLoaderRoute: typeof DocsAnimatedTestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs/animated-cards': {
+      id: '/docs/animated-cards'
+      path: '/docs/animated-cards'
+      fullPath: '/docs/animated-cards'
+      preLoaderRoute: typeof DocsAnimatedCardsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

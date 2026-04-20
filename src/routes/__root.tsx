@@ -43,43 +43,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en" className="dar">
       <head>
         <HeadContent />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function () {
-  var KEY = "__radium_chunk_reload__";
-  var hasReloaded = sessionStorage.getItem(KEY) === "1";
-  var shouldReload = function (message) {
-    return (
-      /Failed to fetch dynamically imported module/i.test(message) ||
-      /Importing a module script failed/i.test(message) ||
-      /Loading chunk [\\d]+ failed/i.test(message)
-    );
-  };
-  var reloadOnce = function () {
-    if (hasReloaded) return;
-    sessionStorage.setItem(KEY, "1");
-    window.location.reload();
-  };
-
-  window.addEventListener("error", function (event) {
-    var message = (event && event.message) || "";
-    if (shouldReload(message)) reloadOnce();
-  });
-
-  window.addEventListener("unhandledrejection", function (event) {
-    var reason = event && event.reason;
-    var message = "";
-    if (typeof reason === "string") message = reason;
-    else if (reason && typeof reason.message === "string") message = reason.message;
-    if (shouldReload(message)) reloadOnce();
-  });
-
-  window.addEventListener("pageshow", function () {
-    sessionStorage.removeItem(KEY);
-  });
-})();`,
-          }}
-        />
       </head>
       <body>
         {shouldShowNavbar ? <Navbar /> : null}

@@ -1,0 +1,15 @@
+import { DocShowcase } from "@/components/docs/doc-showcase"
+import { ScrollBarsDocPreview } from "./scroll-bars-preview"
+
+# Scroll bars
+
+Horizontal and vertical bar readouts tied to scroll progress—good for scroll-linked UI and section storytelling.
+
+<DocShowcase
+  command="npx shadcn@latest add scroll-bars"
+  preview={<ScrollBarsDocPreview />}
+>
+
+Pass a Framer **Motion** `scrollYProgress` value from `useScroll` (here scoped to the preview panel via `container`). Optional `rounded` and `accentColor` tweak the frame and indicator.
+
+</DocShowcase>
