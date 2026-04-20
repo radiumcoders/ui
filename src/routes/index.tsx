@@ -23,22 +23,22 @@ function HeroSection() {
     {
       label: "Responsive",
       className:
-        "left-2 top-24 -rotate-6 bg-red-100 dark:bg-red-950 text-red-400 sm:left-6 sm:top-28 md:left-10 md:top-28 lg:left-20 border-red-500/20 ",
+        "left-2 top-24 -rotate-6 bg-red-100 dark:bg-red-950 text-red-400 sm:left-6 sm:top-28 md:left-10 md:top-28 lg:left-20",
     },
     {
       label: "Shadcn Compatible",
       className:
-        "right-2 top-20 rotate-6 bg-blue-100 dark:bg-blue-950 text-blue-400 sm:right-6 sm:top-24 md:right-12 md:top-28 lg:right-20 border-blue-500/20",
+        "right-2 top-20 rotate-6 bg-blue-100 dark:bg-blue-950 text-blue-400 sm:right-6 sm:top-24 md:right-12 md:top-28 lg:right-20",
     },
     {
       label: "Theme Respective",
       className:
-        "bottom-24 left-2 -rotate-3 bg-purple-100 dark:bg-purple-950 text-purple-400 sm:bottom-28 sm:left-6 md:bottom-20 md:left-12 lg:left-20 border-purple-500/20",
+        "bottom-24 left-2 -rotate-3 bg-purple-100 dark:bg-purple-950 text-purple-400 sm:bottom-28 sm:left-6 md:bottom-20 md:left-12 lg:left-20",
     },
     {
       label: "Templates",
       className:
-        "right-4 bottom-20 rotate-6 bg-emerald-100 dark:bg-emerald-950 text-emerald-400  sm:right-8 sm:bottom-28 md:right-16 md:bottom-20 lg:right-20 border-emerald-500/20",
+        "right-4 bottom-20 rotate-6 bg-emerald-100 dark:bg-emerald-950 text-emerald-400  sm:right-8 sm:bottom-28 md:right-16 md:bottom-20 lg:right-20",
     },
   ]
 
@@ -92,7 +92,7 @@ function HeroSection() {
             <div
               key={badge.label}
               className={cn(
-                "absolute flex h-8 items-center justify-center rounded-md border px-3 text-xs font-semibold  backdrop-blur-sm dark:text-white/85 sm:text-sm transform-3d",
+                "absolute flex h-8 items-center justify-center rounded-md border border-white/20 px-3 text-xs font-semibold shadow-sm backdrop-blur-sm dark:text-white/85 sm:text-sm",
                 badge.className
               )}
             >
