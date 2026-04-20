@@ -1,27 +1,53 @@
-import { type MotionValue, motion, useSpring, useTransform } from "motion/react"
+import { motion, useSpring, useTransform } from "motion/react"
+import type { MotionValue } from "motion/react"
 import { cn } from "@/lib/utils"
 
 const INDICATOR_WIDTH = 4
 const INDICATOR_HEIGHT = 4
+const DEFAULT_BAR_COUNT = 51
+const DEFAULT_MAJOR_EVERY = 5
+
+type ScrollBarsBaseProps = {
+  scrollYProgress: MotionValue<number>
+  rounded?: boolean
+  accentClassName?: string
+  className?: string
+  barClassName?: string
+  indicatorClassName?: string
+  barCount?: number
+  majorEvery?: number
+}
 
 export function ScrollBars({
   scrollYProgress,
-  rounded,
-  accentColor
-}: {
-  scrollYProgress: MotionValue<number>
-  rounded?: boolean
-  accentColor?: string
-}) {
-  const bars = new Array(51).fill(0).map((_, i) => i)
-  const rawX = useTransform(scrollYProgress, [0, 1], [0, 251 - INDICATOR_WIDTH])
+  rounded = false,
+  accentClassName,
+  className,
+  barClassName,
+  indicatorClassName,
+  barCount = DEFAULT_BAR_COUNT,
+  majorEvery = DEFAULT_MAJOR_EVERY,
+}: ScrollBarsBaseProps) {
+  const bars = new Array(barCount).fill(0).map((_, i) => i)
+  const indicatorWidth = INDICATOR_WIDTH
+  const rawX = useTransform(scrollYProgress, [0, 1], [0, 251 - indicatorWidth])
   const x = useSpring(rawX, { stiffness: 200, damping: 20 })
 
   return (
     <div>
-      <motion.div className={cn("relative flex items-center justify-center gap-1 border-2 border-border bg-background p-4", rounded ? "rounded-3xl" : "rounded-none")}>
+      <motion.div
+        className={cn(
+          "relative flex items-center justify-center gap-1 border-2 border-border bg-background p-4",
+          rounded ? "rounded-3xl" : "rounded-none",
+          className
+        )}
+      >
         <motion.div
-          className={cn("absolute left-4 w-1 rounded-full", accentColor ? `bg-${accentColor}` : "bg-accent-foreground")}
+          className={cn(
+            "absolute left-4 w-1 rounded-full bg-accent-foreground",
+            accentClassName,
+            indicatorClassName
+          )}
           initial={{ height: "0px" }}
           animate={{ height: "40px" }}
           style={{ x }}
@@ -32,44 +58,46 @@ export function ScrollBars({
           }}
         />
         {bars.map((bar, idx) => (
-          <Bar key={`bar-${bar.toString()}`} isLarger={idx % 5 === 0} />
+          <Bar
+            key={`bar-${bar.toString()}`}
+            isLarger={idx % majorEvery === 0}
+            className={barClassName}
+          />
         ))}
       </motion.div>
     </div>
   )
 }
-function Bar({ isLarger }: { isLarger: boolean }) {
+
+function Bar({ isLarger, className }: { isLarger: boolean; className?: string }) {
   return (
     <motion.div
       layout
-      // style={{ height }}
-      initial={{ height: isLarger ? "0px" : "0px" }}
+      initial={{ height: "0px" }}
       animate={{ height: isLarger ? "36px" : "24px" }}
       transition={{
         type: "spring",
         damping: 12,
         stiffness: 120,
       }}
-      className={cn("w-px bg-primary", isLarger ? "h-9" : "h-6")}
+      className={cn("w-px bg-primary", isLarger ? "h-9" : "h-6", className)}
     />
   )
 }
 
-// ---------------------------------------------------------------------------
-// Vertical variant
-// ---------------------------------------------------------------------------
-
 export function ScrollBarsVertical({
   scrollYProgress,
-  rounded,
-  accentColor,
-}: {
-  scrollYProgress: MotionValue<number>
-  rounded?: boolean
-  accentColor?: string
-}) {
-  const bars = new Array(51).fill(0).map((_, i) => i)
-  const rawY = useTransform(scrollYProgress, [0, 1], [0, 251 - INDICATOR_HEIGHT])
+  rounded = false,
+  accentClassName,
+  className,
+  barClassName,
+  indicatorClassName,
+  barCount = DEFAULT_BAR_COUNT,
+  majorEvery = DEFAULT_MAJOR_EVERY,
+}: ScrollBarsBaseProps) {
+  const bars = new Array(barCount).fill(0).map((_, i) => i)
+  const indicatorHeight = INDICATOR_HEIGHT
+  const rawY = useTransform(scrollYProgress, [0, 1], [0, 251 - indicatorHeight])
   const y = useSpring(rawY, { stiffness: 200, damping: 20 })
 
   return (
@@ -77,13 +105,15 @@ export function ScrollBarsVertical({
       <motion.div
         className={cn(
           "relative flex flex-col items-center justify-center gap-1 border-2 border-border bg-background p-4",
-          rounded ? "rounded-3xl" : "rounded-none"
+          rounded ? "rounded-3xl" : "rounded-none",
+          className
         )}
       >
         <motion.div
           className={cn(
-            "absolute top-4 h-1 rounded-full",
-            accentColor ? `bg-${accentColor}` : "bg-accent-foreground"
+            "absolute top-4 h-1 rounded-full bg-accent-foreground",
+            accentClassName,
+            indicatorClassName
           )}
           initial={{ width: "0px" }}
           animate={{ width: "40px" }}
@@ -95,14 +125,24 @@ export function ScrollBarsVertical({
           }}
         />
         {bars.map((bar, idx) => (
-          <BarHorizontal key={`bar-h-${bar.toString()}`} isLarger={idx % 5 === 0} />
+          <BarHorizontal
+            key={`bar-h-${bar.toString()}`}
+            isLarger={idx % majorEvery === 0}
+            className={barClassName}
+          />
         ))}
       </motion.div>
     </div>
   )
 }
 
-function BarHorizontal({ isLarger }: { isLarger: boolean }) {
+function BarHorizontal({
+  isLarger,
+  className,
+}: {
+  isLarger: boolean
+  className?: string
+}) {
   return (
     <motion.div
       layout
@@ -113,7 +153,7 @@ function BarHorizontal({ isLarger }: { isLarger: boolean }) {
         damping: 12,
         stiffness: 120,
       }}
-      className={cn("h-px bg-primary", isLarger ? "w-9" : "w-6")}
+      className={cn("h-px bg-primary", isLarger ? "w-9" : "w-6", className)}
     />
   )
 }

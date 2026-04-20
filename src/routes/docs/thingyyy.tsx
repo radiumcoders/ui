@@ -1,0 +1,218 @@
+import { useMemo, useState } from "react"
+import { Link, createFileRoute } from "@tanstack/react-router"
+import { CaretRight, Info, List } from "@phosphor-icons/react"
+import { getComponentDocsRegistry } from "@/lib/docs-component-registry"
+import { getDocsPreviewRegistry } from "@/lib/docs-preview-registry"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer"
+
+export const Route = createFileRoute("/docs/thingyyy")({
+  component: ThingyyyDocsPage,
+})
+
+const appLinks = [
+  { title: "Components", href: "/components" },
+  { title: "Blocks", href: "/blocks" },
+  { title: "Templates", href: "/templates" },
+  { title: "Docs", href: "/docs/thingyyy" },
+] as const
+
+function renderMdxBody(rawBody: string) {
+  const lines = rawBody
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+
+  if (!lines.length) return null
+
+  return (
+    <div className="space-y-2 text-sm text-muted-foreground">
+      {lines.map((line, idx) =>
+        line.startsWith("- ") ? (
+          <p key={`${line}-${idx}`} className="flex items-start gap-2">
+            <CaretRight size={14} className="mt-1 shrink-0 text-foreground" />
+            <span>{line.replace(/^- /, "")}</span>
+          </p>
+        ) : (
+          <p key={`${line}-${idx}`}>{line}</p>
+        )
+      )}
+    </div>
+  )
+}
+
+function ThingyyyDocsPage() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const componentDocs = useMemo(() => getComponentDocsRegistry(), [])
+  const previewMap = useMemo(() => getDocsPreviewRegistry(), [])
+  const [activeComponentId, setActiveComponentId] = useState(
+    componentDocs[0]?.id ?? "animated-cards"
+  )
+
+  const activeComponent = componentDocs.find((item) => item.id === activeComponentId)
+  const activePreview = previewMap[activeComponentId]
+
+  return (
+    <div className="-mx-4 h-svh overflow-hidden bg-background text-foreground">
+      <div className="flex h-full">
+        <aside
+          className={cn(
+            "fixed inset-y-0 left-0 z-30 w-80 border-r border-border bg-card/95 backdrop-blur transition-transform duration-200 md:relative md:translate-x-0",
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+          )}
+        >
+          <div className="flex h-full flex-col p-4">
+            <div className="flex items-center justify-between border-b border-border pb-3">
+              <h2 className="font-heading text-lg">Docs Navigation</h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="md:hidden"
+                onClick={() => setIsSidebarOpen(false)}
+              >
+                Close
+              </Button>
+            </div>
+
+            <div className="mt-4 flex-1 space-y-6 overflow-y-auto pr-1">
+              <div>
+                <p className="mb-2 text-xs tracking-wide text-muted-foreground uppercase">
+                  App Links
+                </p>
+                <div className="space-y-1">
+                  {appLinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      className="inline-flex h-9 w-full items-center justify-start rounded-md px-3 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="mb-2 text-xs tracking-wide text-muted-foreground uppercase">
+                  Components
+                </p>
+                <div className="space-y-1">
+                  {componentDocs.map((item) => (
+                    <Button
+                      key={item.id}
+                      variant={item.id === activeComponentId ? "default" : "ghost"}
+                      className="w-full justify-start"
+                      onClick={() => {
+                        setActiveComponentId(item.id)
+                        setIsSidebarOpen(false)
+                      }}
+                    >
+                      {item.name}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        {isSidebarOpen ? (
+          <button
+            type="button"
+            className="fixed inset-0 z-20 bg-black/30 md:hidden"
+            onClick={() => setIsSidebarOpen(false)}
+            aria-label="Close sidebar"
+          />
+        ) : null}
+
+        <main className="min-w-0 flex-1 overflow-hidden">
+          <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-background/95 p-3 backdrop-blur">
+            <Button
+              variant="outline"
+              onClick={() => setIsSidebarOpen(true)}
+              className="gap-2 md:hidden"
+            >
+              <List size={18} />
+              Menu
+            </Button>
+            <div />
+            <Button
+              variant="outline"
+              onClick={() => setIsDrawerOpen(true)}
+              className="gap-2"
+              disabled={!activeComponent}
+            >
+              <Info size={18} />
+              Details
+            </Button>
+          </div>
+
+          <section className="flex h-[calc(100svh-4rem)] items-center justify-center overflow-auto p-4">
+            <div className="mx-auto w-full max-w-6xl">
+              {activePreview ?? (
+                <div className="rounded-lg border border-dashed border-border p-8 text-center text-muted-foreground">
+                  No preview renderer found for this component yet.
+                </div>
+              )}
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen} direction="bottom">
+        <DrawerContent className="max-h-[80svh] w-full overflow-y-auto">
+          <DrawerHeader>
+            <DrawerTitle>{activeComponent?.name ?? "Missing Component Doc"}</DrawerTitle>
+            <DrawerDescription>
+              {activeComponent?.description ??
+                "This component is missing metadata. Add an MDX file in src/content/docs-components."}
+            </DrawerDescription>
+          </DrawerHeader>
+          <div className="space-y-4 px-4 pb-6">
+            <div className="rounded-lg border border-border bg-muted/50 p-3">
+              <p className="mb-1 text-xs uppercase text-muted-foreground">Command</p>
+              <code className="text-sm">
+                {activeComponent?.command ?? "npx shadcn@latest add your-component"}
+              </code>
+            </div>
+            <div>
+              <p className="mb-2 text-xs uppercase text-muted-foreground">Props</p>
+              <div className="space-y-2">
+                {(activeComponent?.props ?? []).map((prop) => (
+                  <div key={prop.name} className="rounded-lg border border-border p-3">
+                    <p className="font-medium">
+                      {prop.name}
+                      <span className="ml-2 text-xs text-muted-foreground">
+                        {prop.type}
+                      </span>
+                    </p>
+                    <p className="text-sm text-muted-foreground">{prop.details}</p>
+                  </div>
+                ))}
+                {!activeComponent?.props.length ? (
+                  <div className="rounded-lg border border-dashed border-border p-3 text-sm text-muted-foreground">
+                    No props documented yet.
+                  </div>
+                ) : null}
+              </div>
+            </div>
+            <div>
+              <p className="mb-2 text-xs uppercase text-muted-foreground">Notes</p>
+              <div className="rounded-lg border border-border p-3">
+                {activeComponent ? renderMdxBody(activeComponent.body) : null}
+              </div>
+            </div>
+          </div>
+        </DrawerContent>
+      </Drawer>
+    </div>
+  )
+}

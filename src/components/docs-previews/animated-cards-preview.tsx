@@ -1,9 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import { AnimatedCards, type CardItem } from "@/components/xcn/animated-cards"
-
-export const Route = createFileRoute("/animated-cards/")({
-  component: RouteComponent,
-})
+import type { CardItem } from "@/components/xcn/animated-cards"
+import { AnimatedCards } from "@/components/xcn/animated-cards"
 
 const Cards: CardItem[] = [
   {
@@ -76,15 +72,6 @@ const Cards: CardItem[] = [
   },
 ]
 
-function RouteComponent() {
-  return (
-    <div>
-      <div className="flex min-h-svh items-center justify-center bg-white dark:bg-neutral-950">
-        <AnimatedCards cards={Cards} />
-      </div>
-      <div className="flex min-h-svh items-center justify-center bg-white dark:bg-neutral-950">
-        <AnimatedCards cards={Cards} rounded />
-      </div>
-    </div>
-  )
+export function AnimatedCardsPreview() {
+  return <AnimatedCards cards={Cards} rounded />
 }

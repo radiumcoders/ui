@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils"
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navlinks = [
-    { title: "Components", href: "/components" },
     { title: "Blocks", href: "/blocks" },
     { title: "Templates", href: "/templates" },
+    { title: "Docs", href: "/docs/thingyyy" },
   ]
   const socialLinks = [
     { title: "Twitter", href: "https://x.com/radiumcoders", external: true },

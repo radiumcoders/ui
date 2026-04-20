@@ -1,8 +1,13 @@
 import { TanStackDevtools } from "@tanstack/react-devtools"
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router"
+import {
+  createRootRoute,
+  HeadContent,
+  Scripts,
+  useRouterState,
+} from "@tanstack/react-router"
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
-import Navbar from "@/components/navbar"
 import appCss from "../styles.css?url"
+import Navbar from "@/components/navbar"
 
 export const Route = createRootRoute({
   head: () => ({
@@ -29,6 +34,11 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  })
+  const shouldShowNavbar = pathname !== "/docs/thingyyy"
+
   return (
     <html lang="en" className="dar">
       <head>
@@ -72,7 +82,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         />
       </head>
       <body>
-        <Navbar />
+        {shouldShowNavbar ? <Navbar /> : null}
         {/* <Measurer />   */}
         <main className="px-4">{children}</main>
         <TanStackDevtools
