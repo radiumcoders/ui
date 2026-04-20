@@ -1,173 +1,100 @@
 import { writeFileSync, mkdirSync, readFileSync } from "fs"
 import { join } from "path"
 
-// Ensure directories exist
-const publicDir = join(process.cwd(), "public")
-const rDir = join(publicDir, "r")
-const xcnDir = join(rDir, "xcn")
-const stylesDir = join(rDir, "styles")
+// ─── Config ───────────────────────────────────────────────────────────────────
 
-mkdirSync(rDir, { recursive: true })
-mkdirSync(xcnDir, { recursive: true })
-mkdirSync(stylesDir, { recursive: true })
-
-// Base URLs
 const BASE_URL = "https://ui.radiumcoders.com"
+const SRC_DIR = join(process.cwd(), "src/components/xcn")
+const OUT_DIR = join(process.cwd(), "public/r")
 
-// 1. Registry Index
-const registryIndex = {
+const components = [
+  {
+    name: "animated-cards",
+    title: "Animated Cards",
+    description: "Overlapping animated cards with subtle hover zoom and per-card rotation.",
+    dependencies: ["motion"],
+  },
+  {
+    name: "scroll-bars",
+    title: "Scroll Bars",
+    description: "Animated scroll bars component.",
+    dependencies: ["motion"],
+  },
+  {
+    name: "animated-testimonials",
+    title: "Animated Testimonials",
+    description: "Animated testimonials with blur effect.",
+    dependencies: ["motion"],
+  },
+]
+
+// ─── Setup ────────────────────────────────────────────────────────────────────
+
+mkdirSync(join(OUT_DIR, "xcn"), { recursive: true })
+mkdirSync(join(OUT_DIR, "styles"), { recursive: true })
+
+function write(path, data) {
+  writeFileSync(path, JSON.stringify(data, null, 2))
+  console.log(`  ✔ ${path.replace(process.cwd(), "")}`)
+}
+
+// ─── 1. Index ─────────────────────────────────────────────────────────────────
+
+write(join(OUT_DIR, "index.json"), {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "radiumcoders",
   homepage: BASE_URL,
-  description:
-    "Hand-crafted, beautiful, and minimal UI components built with Tailwind CSS and Framer Motion.",
-  items: [
-    {
-      name: "animated-cards",
-      type: "registry:component",
-      title: "Animated Cards",
-      description:
-        "Overlapping animated cards with subtle hover zoom and per-card rotation.",
-      dependencies: ["motion"],
-      registryDependencies: [],
-      files: [
-        {
-          path: `${BASE_URL}/r/xcn/animated-cards.json`,
-          type: "registry:page",
-        },
-      ],
-    },
-    {
-      name: "scroll-bars",
-      type: "registry:component",
-      title: "Scroll Bars",
-      description: "Animated scroll bars component.",
-      dependencies: ["motion"],
-      registryDependencies: [],
-      files: [
-        {
-          path: `${BASE_URL}/r/xcn/scroll-bars.json`,
-          type: "registry:page",
-        },
-      ],
-    },
-    {
-      name: "animated-testimonials",
-      type: "registry:component",
-      title: "Animated Testimonials",
-      description: "Animated testimonials with blur effect.",
-      dependencies: ["motion"],
-      registryDependencies: [],
-      files: [
-        {
-          path: `${BASE_URL}/r/xcn/animated-testimonials.json`,
-          type: "registry:page",
-        },
-      ],
-    },
-  ],
+  description: "Hand-crafted, beautiful, and minimal UI components built with Tailwind CSS and Framer Motion.",
+  items: components.map((c) => ({
+    name: c.name,
+    type: "registry:component",
+    title: c.title,
+    description: c.description,
+    dependencies: c.dependencies ?? [],
+    registryDependencies: [],
+    files: [
+      {
+        path: `${BASE_URL}/r/xcn/${c.name}.json`,
+        type: "registry:page",
+      },
+    ],
+  })),
+})
+
+// ─── 2. Component Items ───────────────────────────────────────────────────────
+
+for (const c of components) {
+  write(join(OUT_DIR, "xcn", `${c.name}.json`), {
+    $schema: "https://ui.shadcn.com/schema/registry-item.json",
+    name: c.name,
+    type: "registry:component",
+    title: c.title,
+    description: c.description,
+    dependencies: c.dependencies ?? [],
+    registryDependencies: [],
+    files: [
+      {
+        path: `components/xcn/${c.name}.tsx`,
+        content: readFileSync(join(SRC_DIR, `${c.name}.tsx`), "utf8"),
+        type: "registry:component",
+        target: `components/xcn/${c.name}.tsx`,
+      },
+    ],
+  })
 }
 
-writeFileSync(join(rDir, "index.json"), JSON.stringify(registryIndex, null, 2))
+// ─── 3. Style ─────────────────────────────────────────────────────────────────
 
-// 2. Animated Cards Component Item
-const animatedCardsItem = {
-  $schema: "https://ui.shadcn.com/schema/registry-item.json",
-  name: "animated-cards",
-  type: "registry:component",
-  title: "Animated Cards",
-  description:
-    "Overlapping animated cards with subtle hover zoom and per-card rotation.",
-  dependencies: ["motion"],
-  registryDependencies: [],
-  files: [
-    {
-      path: "components/xcn/animated-cards.tsx",
-      content: readFileSync(
-        join(process.cwd(), "src/components/xcn/animated-cards.tsx"),
-        "utf8"
-      ),
-      type: "registry:component",
-      target: "components/xcn/animated-cards.tsx",
-    },
-  ],
-}
-
-writeFileSync(
-  join(xcnDir, "animated-cards.json"),
-  JSON.stringify(animatedCardsItem, null, 2)
-)
-
-// 3. Scroll Bars Component Item
-const scrollBarsItem = {
-  $schema: "https://ui.shadcn.com/schema/registry-item.json",
-  name: "scroll-bars",
-  type: "registry:component",
-  title: "Scroll Bars",
-  description: "Animated scroll bars component.",
-  dependencies: ["motion"],
-  registryDependencies: [],
-  files: [
-    {
-      path: "components/xcn/scroll-bars.tsx",
-      content: readFileSync(
-        join(process.cwd(), "src/components/xcn/scroll-bars.tsx"),
-        "utf8"
-      ),
-      type: "registry:component",
-      target: "components/xcn/scroll-bars.tsx",
-    },
-  ],
-}
-
-writeFileSync(
-  join(xcnDir, "scroll-bars.json"),
-  JSON.stringify(scrollBarsItem, null, 2)
-)
-
-// 4. Animated Testimonials Component Item
-const animatedTestimonialsItem = {
-  $schema: "https://ui.shadcn.com/schema/registry-item.json",
-  name: "animated-testimonials",
-  type: "registry:component",
-  title: "Animated Testimonials",
-  description: "Animated testimonials with blur effect.",
-  dependencies: ["motion"],
-  registryDependencies: [],
-  files: [
-    {
-      path: "components/xcn/animated-testimonials.tsx",
-      content: readFileSync(
-        join(process.cwd(), "src/components/xcn/animated-testimonials.tsx"),
-        "utf8"
-      ),
-      type: "registry:component",
-      target: "components/xcn/animated-testimonials.tsx",
-    },
-  ],
-}
-
-writeFileSync(
-  join(xcnDir, "animated-testimonials.json"),
-  JSON.stringify(animatedTestimonialsItem, null, 2)
-)
-
-// 5. Style Definition
-const styleItem = {
+write(join(OUT_DIR, "styles", "xcn.json"), {
   $schema: "https://ui.shadcn.com/schema/registry-item.json",
   name: "xcn",
   type: "registry:style",
   title: "XCN Style",
-  description: "Base style configuration for XCN components",
+  description: "Base style configuration for XCN components.",
   dependencies: [],
   registryDependencies: [],
   files: [],
-  cssVars: {
-    light: {},
-    dark: {},
-  },
-}
+  cssVars: { light: {}, dark: {} },
+})
 
-writeFileSync(join(stylesDir, "xcn.json"), JSON.stringify(styleItem, null, 2))
-
-console.log("✅ Registry built successfully in public/r/")
+console.log(`\n✅ Done — ${components.length + 2} files written to public/r/\n`)

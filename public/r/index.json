@@ -1,54 +1,53 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "radiumcoders",
+  "name": "xcn",
   "homepage": "https://ui.radiumcoders.com",
-  "description": "Hand-crafted, beautiful, and minimal UI components built with Tailwind CSS and Framer Motion.",
   "items": [
     {
       "name": "animated-cards",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Animated Cards",
       "description": "Overlapping animated cards with subtle hover zoom and per-card rotation.",
       "dependencies": [
         "motion"
       ],
-      "registryDependencies": [],
       "files": [
         {
-          "path": "https://ui.radiumcoders.com/r/xcn/animated-cards.json",
-          "type": "registry:page"
+          "path": "components/xcn/animated-cards.tsx",
+          "type": "registry:ui",
+          "target": "components/xcn/animated-cards.tsx"
         }
       ]
     },
     {
       "name": "scroll-bars",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Scroll Bars",
       "description": "Animated scroll bars component.",
       "dependencies": [
         "motion"
       ],
-      "registryDependencies": [],
       "files": [
         {
-          "path": "https://ui.radiumcoders.com/r/xcn/scroll-bars.json",
-          "type": "registry:page"
+          "path": "components/xcn/scroll-bars.tsx",
+          "type": "registry:ui",
+          "target": "components/xcn/scroll-bars.tsx"
         }
       ]
     },
     {
       "name": "animated-testimonials",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Animated Testimonials",
       "description": "Animated testimonials with blur effect.",
       "dependencies": [
         "motion"
       ],
-      "registryDependencies": [],
       "files": [
         {
-          "path": "https://ui.radiumcoders.com/r/xcn/animated-testimonials.json",
-          "type": "registry:page"
+          "path": "components/xcn/animated-testimonials.tsx",
+          "type": "registry:ui",
+          "target": "components/xcn/animated-testimonials.tsx"
         }
       ]
     }
