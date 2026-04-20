@@ -45,7 +45,7 @@ const Cards: CardItem[] = [
     rotation: -3,
   },
   {
-    title: "MORDERN",
+    title: "MODERN",
     description: "Cutting-edge design patterns utilizing the latest trends.",
     className:
       "bg-amber-100 [&_h1]:text-neutral-900 [&_p]:text-neutral-800 border-amber-200 shadow-xl shadow-amber-500/20",

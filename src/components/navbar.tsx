@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router"
-import { List, XIcon } from "@phosphor-icons/react"
+import { ListIcon, XIcon } from "@phosphor-icons/react"
 import Container from "./container"
 import { Button } from "./ui/button"
 import { AnimatePresence, motion } from "motion/react"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
+import ThemeToggle from "./theme-toggel"
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -71,25 +72,30 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open mobile menu"
             >
-              <List size={22} weight="bold" />
+              <ListIcon size={22} weight="bold" />
             </Button>
-            <Button
-              variant="outline"
-              className={cn(
-                "inline-flex h-8 items-center justify-center gap-2 rounded-md",
-                "border border-dashed border-primary",
-                "bg-muted bg-linear-to-t from-muted to-background",
-                "px-2 text-sm font-medium whitespace-nowrap",
-                "shadow-md shadow-zinc-950/10",
-                "transition-colors duration-200 hover:to-muted",
-                "focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none",
-                "disabled:pointer-events-none disabled:opacity-50",
-                "dark:border-primary/40 dark:from-muted/50 dark:hover:to-muted/50",
-                "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
-              )}
-            >
-              Sponsor
-            </Button>
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+              <a href="https://github.com/sponsors/radiumcoders">
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "inline-flex h-8 items-center justify-center gap-2 rounded-md",
+                    "border border-dashed border-primary",
+                    "bg-muted bg-linear-to-t from-muted to-background",
+                    "px-2 text-sm font-medium whitespace-nowrap",
+                    "shadow-md shadow-zinc-950/10",
+                    "transition-colors duration-200 hover:to-muted",
+                    "focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none",
+                    "disabled:pointer-events-none disabled:opacity-50",
+                    "dark:border-primary/40 dark:from-muted/50 dark:hover:to-muted/50",
+                    "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+                  )}
+                >
+                  Sponsor
+                </Button>
+              </a>
+            </div>
             {/*<Button variant="outline" className="rounded font-heading">
             Get Pro
           </Button>*/}
@@ -176,12 +182,14 @@ export default function Navbar() {
               </div>
               <div className="border-t border-border px-4 py-4">
                 <div className="flex flex-col gap-2">
-                  <Button
-                    className="w-full rounded-lg p-6 font-heading shadow-[inset_0px_0px_10px_0px_#fafafa] dark:shadow-[inset_0px_0px_8px_0px_#171717]"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Sponsor
-                  </Button>
+                  <a href="https://github.com/sponsors/radiumcoders">
+                    <Button
+                      className="w-full rounded-lg p-6 font-heading shadow-[inset_0px_0px_10px_0px_#fafafa] dark:shadow-[inset_0px_0px_8px_0px_#171717]"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Sponsor
+                    </Button>
+                  </a>
                 </div>
               </div>
             </motion.nav>
