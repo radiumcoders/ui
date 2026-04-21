@@ -88,8 +88,8 @@ function ThingyyyDocsPage() {
           )}
         >
           <div className="flex h-full flex-col p-4 px-0">
-            <div className="flex items-center justify-between border-b border-border px-4 pb-3 [--pattern:var(--color-neutral-200)] dark:[--pattern:var(--color-neutral-800)]">
-              <div className="bg-[repeating-linear-gradient(315deg,var(--pattern)_0,var(--pattern)_1px,transparent_0,transparent_50%)] bg-size-[10px_10px] h-full w-full rounded border-border border" />
+            <div className="flex items-center justify-between gap-4 border-b border-border px-4 pb-3 [--pattern:var(--color-neutral-200)] dark:[--pattern:var(--color-neutral-800)]">
+              <div className="h-full w-full rounded border border-border bg-[repeating-linear-gradient(315deg,var(--pattern)_0,var(--pattern)_1px,transparent_0,transparent_50%)] bg-size-[10px_10px]" />
               <Button
                 variant="ghost"
                 size="sm"

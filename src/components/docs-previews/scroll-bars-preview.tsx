@@ -16,7 +16,7 @@ export function ScrollBarsPreview() {
       <div className="relative h-[390vh] w-full">
         <div className="sticky top-0 h-220">
           <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-4 sm:flex-row">
-            <ScrollBars scrollYProgress={scrollYProgress} rounded />
+            <ScrollBars scrollYProgress={scrollYProgress} rounded accentClassName="dark:bg-orange-600 bg-orange-500" />
             <ScrollBarsVertical scrollYProgress={scrollYProgress} />
           </div>
         </div>
