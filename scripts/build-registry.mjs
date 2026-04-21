@@ -32,6 +32,12 @@ const components = [
     description: "A set of skeuomorphic buttons with realistic shadows and press effects.",
     dependencies: [],
   },
+  {
+    name: "stamp",
+    title: "Stamp",
+    description: "A perforated edge stamp component with customizable colors.",
+    dependencies: [],
+  },
 ]
 
 // ─── Setup ────────────────────────────────────────────────────────────────────

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stamp",
+  "type": "registry:component",
+  "title": "Stamp",
+  "description": "A perforated edge stamp component with customizable colors.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/xcn/stamp.tsx",
+      "content": "import { useId } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nexport default function Stamp({\n  children,\n  holeRadius = 5,\n  pitch = 14,\n  width = 196,\n  height = 252,\n  className,\n  stampColor,\n  borderColor,\n}: {\n  children?: React.ReactNode\n  holeRadius?: number\n  pitch?: number\n  width?: number\n  height?: number\n  className?: string\n  stampColor?: string\n  borderColor?: string\n}) {\n  const maskId = useId()\n\n  const holes: { cx: number; cy: number }[] = []\n\n  // Top + Bottom (skip first and last)\n  for (\n    let x = holeRadius + pitch;\n    x <= width - holeRadius - pitch;\n    x += pitch\n  ) {\n    holes.push({ cx: x, cy: 0 }) // top\n    holes.push({ cx: x, cy: height }) // bottom\n  }\n\n  // Left + Right (skip first and last)\n  for (\n    let y = holeRadius + pitch;\n    y <= height - holeRadius - pitch;\n    y += pitch\n  ) {\n    holes.push({ cx: 0, cy: y }) // left\n    holes.push({ cx: width, cy: y }) // right\n  }\n\n  return (\n    <div className={cn(\"relative\", className)} style={{ width, height }}>\n      <svg\n        width={width}\n        height={height}\n        viewBox={`0 0 ${width} ${height}`}\n        style={{ position: \"absolute\", inset: 0 }}\n      >\n        <defs>\n          <mask id={maskId} maskUnits=\"userSpaceOnUse\">\n            {/* visible area */}\n            <rect width={width} height={height} fill=\"white\" />\n\n            {/* holes */}\n            {holes.map((h, i) => (\n              <circle key={i} cx={h.cx} cy={h.cy} r={holeRadius} fill=\"black\" />\n            ))}\n          </mask>\n        </defs>\n\n        {/* border with clean holes */}\n        <rect\n          width={width}\n          height={height}\n          fill={stampColor || \"currentColor\"}\n          mask={`url(#${maskId})`}\n        />\n      </svg>\n\n      {/* inner content */}\n      <div\n        className=\"absolute border\"\n        style={{\n          inset: pitch,\n          borderRadius: 0,\n          background: stampColor || \"var(--background)\",\n          borderColor: borderColor || \"#c0be96\",\n        }}\n      >\n        {children}\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/xcn/stamp.tsx"
+    }
+  ]
+}

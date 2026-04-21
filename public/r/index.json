@@ -65,6 +65,20 @@
           "type": "registry:page"
         }
       ]
+    },
+    {
+      "name": "stamp",
+      "type": "registry:component",
+      "title": "Stamp",
+      "description": "A perforated edge stamp component with customizable colors.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "https://ui.radiumcoders.com/r/xcn/stamp.json",
+          "type": "registry:page"
+        }
+      ]
     }
   ]
 }
