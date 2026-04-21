@@ -179,11 +179,6 @@
     }
 }
 
-::selection {
-  background-color: #fee2e2;
-  color: #f87171;
-}
-
 @layer components {
   .hero-energy-base {
     opacity: 0.45;
@@ -271,4 +266,14 @@
   .hero-title-radial-fade {
     animation: none;
   }
+}
+
+::selection {
+  background-color: #fee2e2;
+  color: #f87171;
+}
+
+.dark ::selection {
+  background-color: #7f1d1d4b;
+  color: #ef4444;
 }

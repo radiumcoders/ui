@@ -23,7 +23,7 @@ export default function Navbar() {
     { title: "Twitter", href: "https://x.com/radiumcoders", external: true },
     {
       title: "GitHub",
-      href: "https://github.com/radiumcoders",
+      href: "https://github.com/radiumcoders/ui",
       external: true,
     },
   ]
@@ -52,7 +52,7 @@ export default function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-50 h-16 w-full border-b border-border bg-background/80 backdrop-blur-2xl">
-        <Container className="grid h-full grid-cols-[auto_1fr_auto] items-center px-4">
+        <Container className="relative h-full flex items-center px-4">
           {/* LEFT */}
           <div className="flex items-center">
             <Link to="/">
@@ -60,8 +60,8 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* CENTER */}
-          <div className="hidden items-center justify-center gap-6 font-heading md:flex">
+          {/* CENTER — absolutely centered so it's independent of left/right widths */}
+          <nav className="absolute left-1/2 -translate-x-1/2 hidden items-center gap-6 font-heading md:flex">
             {navlinks.map((item) => (
               <MotionLink
                 whileHover={{ opacity: 0.7 }}
@@ -71,10 +71,10 @@ export default function Navbar() {
                 {item.title}
               </MotionLink>
             ))}
-          </div>
+          </nav>
 
           {/* RIGHT */}
-          <div className="flex items-center justify-end gap-2">
+          <div className="ml-auto flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
@@ -84,9 +84,9 @@ export default function Navbar() {
             >
               <ListIcon size={22} weight="bold" />
             </Button>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <a
-                href="https://github.com/radiumcoders"
+                href="https://github.com/radiumcoders/ui"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -128,12 +128,10 @@ export default function Navbar() {
                 </Button>
               </a>
             </div>
-            {/*<Button variant="outline" className="rounded font-heading">
-            Get Pro
-          </Button>*/}
           </div>
         </Container>
       </header>
+
       <AnimatePresence>
         {isMobileMenuOpen ? (
           <motion.div
@@ -212,6 +210,7 @@ export default function Navbar() {
                   )}
                 </div>
               </div>
+
               <div className="border-t border-border px-4 py-4">
                 <div className="flex flex-col gap-2">
                   <a href="https://github.com/sponsors/radiumcoders">

@@ -125,7 +125,7 @@ export function CodeBlockCommand({
   )
 
   return (
-    <div className="relative overflow-hidden rounded-xl bg-code">
+    <div className="relative overflow-hidden rounded-xl bg-neutral-50 dark:bg-neutral-900">
       <Tabs
         className="gap-0"
         value={packageManager}
@@ -156,7 +156,7 @@ export function CodeBlockCommand({
               )
             })}
 
-            <TabsIndicator className="h-0.5 translate-y-0 rounded-none bg-foreground shadow-none dark:bg-foreground" />
+            <TabsIndicator className="h-0.5 translate-y-0 rounded-none bg-accent-foreground shadow-none" />
           </TabsList>
         </ScrollArea.Root>
 

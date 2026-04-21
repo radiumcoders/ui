@@ -14,9 +14,9 @@ export function ScrollBarsPreview() {
       className="relative h-[calc(100svh-60px)] w-full overflow-y-auto overscroll-contain"
     >
       <div className="relative h-[390vh] w-full">
-        <div className="sticky top-0 h-svh">
+        <div className="sticky top-0 h-220">
           <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-4 sm:flex-row">
-            <ScrollBars scrollYProgress={scrollYProgress} />
+            <ScrollBars scrollYProgress={scrollYProgress} rounded />
             <ScrollBarsVertical scrollYProgress={scrollYProgress} />
           </div>
         </div>

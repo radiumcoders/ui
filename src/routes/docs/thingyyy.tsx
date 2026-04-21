@@ -24,6 +24,7 @@ import {
   CodeBlockCommand,
   convertNpmCommand,
 } from "@/components/code-block-command"
+import ThemeToggle from "@/components/theme-toggel"
 
 export const Route = createFileRoute("/docs/thingyyy")({
   component: ThingyyyDocsPage,
@@ -64,7 +65,7 @@ function renderMdxBody(rawBody: string) {
 }
 
 function ThingyyyDocsPage() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const componentDocs = useMemo(() => getComponentDocsRegistry(), [])
   const previewMap = useMemo(() => getDocsPreviewRegistry(), [])
@@ -82,19 +83,17 @@ function ThingyyyDocsPage() {
       <div className="flex h-full">
         <aside
           className={cn(
-            "fixed inset-y-0 left-0 z-30 w-80 border-r border-border bg-card/95 backdrop-blur transition-transform duration-200 md:relative md:translate-x-0",
-            isSidebarOpen
-              ? "translate-x-0"
-              : "-translate-x-full md:translate-x-0"
+            "fixed inset-y-0 left-0 z-30 w-80 border-r border-border bg-card/95 backdrop-blur transition-transform duration-200",
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           )}
         >
           <div className="flex h-full flex-col p-4 px-0">
-            <div className="flex items-center justify-between border-b border-border px-4 pb-3">
-              <h2 className="font-heading text-lg">Docs Navigation</h2>
+            <div className="flex items-center justify-between border-b border-border px-4 pb-3 [--pattern:var(--color-neutral-200)] dark:[--pattern:var(--color-neutral-800)]">
+              <div className="bg-[repeating-linear-gradient(315deg,var(--pattern)_0,var(--pattern)_1px,transparent_0,transparent_50%)] bg-size-[10px_10px] h-full w-full rounded border-border border" />
               <Button
                 variant="ghost"
                 size="sm"
-                className="px-4 md:hidden"
+                className="px-4"
                 onClick={() => setIsSidebarOpen(false)}
               >
                 Close
@@ -148,7 +147,7 @@ function ThingyyyDocsPage() {
         {isSidebarOpen ? (
           <button
             type="button"
-            className="fixed inset-0 z-20 bg-black/30 md:hidden"
+            className="fixed inset-0 z-20 bg-black/30"
             onClick={() => setIsSidebarOpen(false)}
             aria-label="Close sidebar"
           />
@@ -159,21 +158,24 @@ function ThingyyyDocsPage() {
             <Button
               variant="outline"
               onClick={() => setIsSidebarOpen(true)}
-              className="gap-2 md:hidden"
+              className="gap-2"
             >
               <List size={18} />
               Menu
             </Button>
             <div />
-            <Button
-              variant="outline"
-              onClick={() => setIsDrawerOpen(true)}
-              className="gap-2"
-              disabled={!activeComponent}
-            >
-              <Info size={18} />
-              Details
-            </Button>
+            <div className="flex items-center justify-center gap-4 pr-4">
+              <Button
+                variant="outline"
+                onClick={() => setIsDrawerOpen(true)}
+                className="gap-2"
+                disabled={!activeComponent}
+              >
+                <Info size={18} />
+                Details
+              </Button>
+              <ThemeToggle />
+            </div>
           </div>
 
           <section className="flex h-[calc(100svh)] items-center justify-center overflow-hidden">
