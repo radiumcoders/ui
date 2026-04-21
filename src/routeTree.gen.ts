@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TemplatesRouteImport } from './routes/templates'
+import { Route as PlaygroundRouteImport } from './routes/playground'
 import { Route as BlocksRouteImport } from './routes/blocks'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsThingyyyRouteImport } from './routes/docs/thingyyy'
@@ -17,6 +18,11 @@ import { Route as DocsThingyyyRouteImport } from './routes/docs/thingyyy'
 const TemplatesRoute = TemplatesRouteImport.update({
   id: '/templates',
   path: '/templates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaygroundRoute = PlaygroundRouteImport.update({
+  id: '/playground',
+  path: '/playground',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlocksRoute = BlocksRouteImport.update({
@@ -38,12 +44,14 @@ const DocsThingyyyRoute = DocsThingyyyRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blocks': typeof BlocksRoute
+  '/playground': typeof PlaygroundRoute
   '/templates': typeof TemplatesRoute
   '/docs/thingyyy': typeof DocsThingyyyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blocks': typeof BlocksRoute
+  '/playground': typeof PlaygroundRoute
   '/templates': typeof TemplatesRoute
   '/docs/thingyyy': typeof DocsThingyyyRoute
 }
@@ -51,20 +59,28 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blocks': typeof BlocksRoute
+  '/playground': typeof PlaygroundRoute
   '/templates': typeof TemplatesRoute
   '/docs/thingyyy': typeof DocsThingyyyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blocks' | '/templates' | '/docs/thingyyy'
+  fullPaths: '/' | '/blocks' | '/playground' | '/templates' | '/docs/thingyyy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blocks' | '/templates' | '/docs/thingyyy'
-  id: '__root__' | '/' | '/blocks' | '/templates' | '/docs/thingyyy'
+  to: '/' | '/blocks' | '/playground' | '/templates' | '/docs/thingyyy'
+  id:
+    | '__root__'
+    | '/'
+    | '/blocks'
+    | '/playground'
+    | '/templates'
+    | '/docs/thingyyy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlocksRoute: typeof BlocksRoute
+  PlaygroundRoute: typeof PlaygroundRoute
   TemplatesRoute: typeof TemplatesRoute
   DocsThingyyyRoute: typeof DocsThingyyyRoute
 }
@@ -76,6 +92,13 @@ declare module '@tanstack/react-router' {
       path: '/templates'
       fullPath: '/templates'
       preLoaderRoute: typeof TemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playground': {
+      id: '/playground'
+      path: '/playground'
+      fullPath: '/playground'
+      preLoaderRoute: typeof PlaygroundRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blocks': {
@@ -105,6 +128,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlocksRoute: BlocksRoute,
+  PlaygroundRoute: PlaygroundRoute,
   TemplatesRoute: TemplatesRoute,
   DocsThingyyyRoute: DocsThingyyyRoute,
 }

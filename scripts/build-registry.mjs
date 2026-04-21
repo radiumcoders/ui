@@ -26,6 +26,12 @@ const components = [
     description: "Animated testimonials with blur effect.",
     dependencies: ["motion"],
   },
+  {
+    name: "skeuomorphic-buttons",
+    title: "Skeuomorphic Buttons",
+    description: "A set of skeuomorphic buttons with realistic shadows and press effects.",
+    dependencies: [],
+  },
 ]
 
 // ─── Setup ────────────────────────────────────────────────────────────────────
