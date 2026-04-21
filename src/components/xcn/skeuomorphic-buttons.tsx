@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils"
 
 export default function SkeuomorphicButtons() {
   return (
-    <div className="flex h-fit w-fit gap-1 rounded border border-border bg-primary/90 p-1 dark:bg-zinc-900">
+    <div className="flex lg:flex-row flex-col h-fit w-fit gap-1 rounded border border-border bg-primary/90 p-1 dark:bg-zinc-900">
       {new Array(7).fill(0).map((_, i) => {
         return (
           <button
