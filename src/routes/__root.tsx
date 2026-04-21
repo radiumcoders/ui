@@ -8,6 +8,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
 import appCss from "../styles.css?url"
 import Navbar from "@/components/navbar"
+import { useEffect } from "react"
 
 export const Route = createRootRoute({
   head: () => ({
@@ -38,6 +39,35 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     select: (state) => state.location.pathname,
   })
   const shouldShowNavbar = pathname !== "/docs/thingyyy"
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "d") {
+        const isDark = document.documentElement.classList.contains("dark")
+        const newMode = isDark ? "light" : "dark"
+
+        const updateTheme = () => {
+          document.documentElement.classList.remove("light", "dark")
+          document.documentElement.classList.add(newMode)
+          document.documentElement.setAttribute("data-theme", newMode)
+          document.documentElement.style.colorScheme = newMode
+          window.localStorage.setItem("theme", newMode)
+
+          window.dispatchEvent(new CustomEvent("theme-changed"))
+        }
+
+        if (!document.startViewTransition) {
+          updateTheme()
+          return
+        }
+
+        document.startViewTransition(() => updateTheme())
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [])
 
   return (
     <html lang="en" className="dar">
