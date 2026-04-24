@@ -2,6 +2,8 @@
 
 > **Hand-crafted, beautiful, and minimal UI components built with Tailwind CSS and Framer Motion.**
 
+![Preview](/public/preview.png)
+
 ui/radiumcoders or xcn is a curated collection of highly polished, animated, and customizable React components. Built on top of the [shadcn/ui](https://ui.shadcn.com/) architecture, these components are designed to be copied directly into your project via the CLI, giving you full ownership and control over the code.
 
 ---
@@ -28,7 +30,7 @@ Run the following command in your terminal to add a RadiumCoders UI component to
 npx shadcn@latest add https://ui.radiumcoders.com/r/xcn/animated-cards.json
 ```
 
-*The CLI will automatically download the component, place it in your `components/xcn` folder, and install any required dependencies (like `motion`).*
+_The CLI will automatically download the component, place it in your `components/xcn` folder, and install any required dependencies (like `motion`)._
 
 ### 2. Use the Component
 
@@ -63,17 +65,20 @@ export default function Page() {
 ## 📦 Available Components
 
 ### `AnimatedCards`
-A beautiful deck of overlapping, animated cards. Features subtle hover scaling, unique per-card rotations, and smooth re-stacking animations. 
+
+A beautiful deck of overlapping, animated cards. Features subtle hover scaling, unique per-card rotations, and smooth re-stacking animations.
+
 - **Command:** `npx shadcn@latest add https://ui.radiumcoders.com/r/xcn/animated-cards.json`
 - **Dependencies:** `motion`
 
-*(More components coming soon!)*
+_(More components coming soon!)_
 
 ---
 
 ## 🛠️ Tech Stack
 
 This project and its components are built using:
+
 - **[React](https://react.dev/)** & **[TypeScript](https://www.typescriptlang.org/)**
 - **[Tailwind CSS](https://tailwindcss.com/)** (Styling & Layouts)
 - **[Framer Motion](https://motion.dev/)** (Spring physics and animations)
@@ -85,6 +90,7 @@ This project and its components are built using:
 ## 🤝 Contributing
 
 We welcome contributions! If you have a beautiful component you'd like to add or an improvement to an existing one:
+
 1. Fork the repository.
 2. Create your feature branch.
 3. Add your component to `src/components/xcn/`.
@@ -95,5 +101,5 @@ We welcome contributions! If you have a beautiful component you'd like to add or
 
 ## 📄 License
 
-Created by **RadiumCoders**.
+Created by **RadiumCoders**. with 🪓
 Released under the [Apache 2.0 License](LICENSE).
