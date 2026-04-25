@@ -21,6 +21,22 @@
       ]
     },
     {
+      "name": "motion-btn",
+      "type": "registry:component",
+      "title": "Motion Button",
+      "description": "A button component with a motion effect.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "https://ui.radiumcoders.com/r/xcn/motion-btn.json",
+          "type": "registry:page"
+        }
+      ]
+    },
+    {
       "name": "scroll-bars",
       "type": "registry:component",
       "title": "Scroll Bars",

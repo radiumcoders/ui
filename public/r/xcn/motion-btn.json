@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "motion-btn",
+  "type": "registry:component",
+  "title": "Motion Button",
+  "description": "A button component with a motion effect.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/xcn/motion-btn.tsx",
+      "content": "import { cn } from \"@/lib/utils\"\nimport { motion } from \"motion/react\"\nimport { useState } from \"react\"\n\nexport const MotionBtn = ({\n  children,\n  className,\n  tapDuration = 500,\n}: {\n  children: React.ReactNode\n  className?: string\n  tapDuration?: number\n}) => {\n  const [isTapped, setIsTapped] = useState(false)\n\n  const handleTap = () => {\n    if (isTapped) return\n    setIsTapped(true)\n    setTimeout(() => setIsTapped(false), tapDuration)\n  }\n\n  const state = isTapped ? \"tap\" : \"rest\"\n\n  return (\n    <motion.div\n      initial=\"rest\"\n      animate={state}\n      whileHover={isTapped ? \"tap\" : \"hover\"}\n      onTap={handleTap}\n      className=\"relative inline-block cursor-pointer\"\n    >\n      {/* Corner brackets */}\n      {[\n        { corner: \"top-right\",    cls: \"absolute top-0 right-0 size-2 border-t border-r z-20\" },\n        { corner: \"top-left\",     cls: \"absolute top-0 left-0 size-2 border-t border-l z-20\" },\n        { corner: \"bottom-left\",  cls: \"absolute bottom-0 left-0 size-2 border-b border-l z-20\" },\n        { corner: \"bottom-right\", cls: \"absolute right-0 bottom-0 size-2 border-r border-b z-20\" },\n      ].map(({ corner, cls }) => (\n        <motion.div\n          key={corner}\n          custom={corner}\n          variants={{\n            rest: () => ({ x: 0, y: 0, borderColor: \"rgb(38 38 38)\" }),\n            hover: (c: string) => ({\n              x: c.includes(\"right\") ? 3 : -3,\n              y: c.includes(\"bottom\") ? 3 : -3,\n              borderColor: \"rgb(38 38 38)\",\n            }),\n            tap: (c: string) => ({\n              x: c.includes(\"right\") ? -2 : 2,\n              y: c.includes(\"bottom\") ? -2 : 2,\n              borderColor: \"#2CD4BD\",\n            }),\n          }}\n          transition={{ type: \"spring\", stiffness: 300, damping: 20 }}\n          className={cls}\n        />\n      ))}\n\n      <button\n        className={cn(\"relative px-10 py-3 font-medium uppercase overflow-hidden\", className)}\n      >\n        {/* Pattern */}\n        <span className=\"absolute inset-0 z-0 bg-[repeating-linear-gradient(315deg,var(--pattern)_0,var(--pattern)_1px,transparent_0,transparent_50%)] bg-size-[7px_7px]\" />\n\n        {/* Arm panel */}\n        <motion.span\n          variants={{\n            rest:  { scaleX: 0, originX: 0, backgroundColor: \"#171717\" },\n            hover: { scaleX: 1, originX: 0, backgroundColor: \"#171717\" },\n            tap:   { scaleX: 1, originX: 0, backgroundColor: \"#2CD4BD\" },\n          }}\n          transition={{ type: \"spring\", stiffness: 220, damping: 22 }}\n          className=\"absolute inset-0 z-10 origin-left\"\n        />\n\n        {/* Text */}\n        <motion.span\n          variants={{\n            rest:  { color: \"var(--color-foreground)\" },\n            hover: { color: \"#ffffff\" },\n            tap:   { color: \"#0a2926\" },\n          }}\n          transition={{ type: \"spring\", stiffness: 220, damping: 22 }}\n          className=\"relative z-20\"\n        >\n          {children}\n        </motion.span>\n      </button>\n    </motion.div>\n  )\n}",
+      "type": "registry:component",
+      "target": "components/xcn/motion-btn.tsx"
+    }
+  ]
+}

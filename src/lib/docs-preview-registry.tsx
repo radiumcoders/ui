@@ -4,6 +4,7 @@ import { AnimatedTestimonialsPreview } from "@/components/docs-previews/animated
 import { ScrollBarsPreview } from "@/components/docs-previews/scroll-bars-preview"
 import SkeuomorphicButtonsPreview from "@/components/docs-previews/skeuomorphic-buttons"
 import StampPreview from "@/components/docs-previews/stamp-preview"
+import MotionBtnPreview from "@/components/docs-previews/motion-btn"
 
 export function getDocsPreviewRegistry(): Record<string, ReactNode> {
   return {
@@ -11,6 +12,7 @@ export function getDocsPreviewRegistry(): Record<string, ReactNode> {
     "animated-testimonials": <AnimatedTestimonialsPreview />,
     "scroll-bars": <ScrollBarsPreview />,
     "skeuomorphic-buttons": <SkeuomorphicButtonsPreview />,
-    stamp: <StampPreview />,
+    "stamp": <StampPreview />,
+    "motion-btn": <MotionBtnPreview />,
   }
 }

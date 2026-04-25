@@ -15,6 +15,12 @@ const components = [
     dependencies: ["motion"],
   },
   {
+    name: "motion-btn",
+    title: "Motion Button",
+    description: "A button component with a motion effect.",
+    dependencies: ["motion"],
+  },
+  {
     name: "scroll-bars",
     title: "Scroll Bars",
     description: "Animated scroll bars component.",
